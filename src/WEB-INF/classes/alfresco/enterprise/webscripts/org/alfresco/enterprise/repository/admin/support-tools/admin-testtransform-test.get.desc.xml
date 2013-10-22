@@ -1,0 +1,9 @@
+<webscript>
+   <shortname>Admin Console - admin-testtransform-test</shortname>
+   <description><![CDATA[Admin Console WebScript testtransform.]]></description>
+   <url>/enterprise/admin/admin-testtransform-test</url>
+   <format default="html" />
+   <authentication>admin</authentication>
+   <lifecycle>internal</lifecycle>
+   <transaction allow="readonly">required</transaction>
+</webscript>

@@ -1,0 +1,9 @@
+<webscript>
+   <shortname>Admin Console - admin-log-settings-tail</shortname>
+   <description><![CDATA[Admin Console WebScript apply a new license.]]></description>
+   <url>/enterprise/admin/admin-log-settings-tail</url>
+   <format default="html" />
+   <authentication>admin</authentication>
+   <lifecycle>internal</lifecycle>
+   <transaction allow="readonly">required</transaction>
+</webscript>
