@@ -5,7 +5,9 @@
  *
  * Java threadDump GET method
  */
-
-model.tools=Admin.getConsoleTools("admin-alfresco-threaddump"); 
- model.metadata = Admin.getServerMetaData();
- 
+function main()
+{
+   model.tools=Admin.getConsoleTools("admin-alfresco-threaddump"); 
+   model.metadata = Admin.getServerMetaData(); 
+}
+main();

@@ -35,7 +35,7 @@ LICENSE:
 
 INSTALLATION:
 There are 2 ways to install the tools: using the AMP installation method,  or via quick-deploy:
- 1) For the AMP installation method, place the support-tools-1.1.amp file into your Alfresco "amps" folder 
+ 1) For the AMP installation method, place the support-tools-*.amp file into your Alfresco "amps" folder 
 and run the script: "bin/apply-amps.[sh|bat]" with the -force switch.
 Alternatively you can execute the following (amending the paths to your case) :
  java -jar ./bin/alfresco-mmt.jar install ./amps/ ./tomcat/webapps/alfresco.war -force
@@ -61,7 +61,16 @@ ACKNOLEDGEMENTS:
 Special thanks to:
 Mike Farman for his support on this project and parts of the code.
 Marco Mancuso for his help on the development.
-Jamie Allison for his code review and "polish".
+Jamie Allison for his code review and "polish" and improvements.
 Will Abson for his useful advice.
 Also to the creators of Smoothie Charts:
 http://smoothiecharts.org/ the library from which was quite useful and fun to use
+
+
+VERSION HISTORY:
+
+1.0 Initial Working version, some UI adjustments needed.
+1.1 Code Reviewed and commited to GitHub
+1.2 UI improvements by Jamie Allison, added ajax to some webscripts for automation ("Active Sessions")
+    Changed the general aspect of the "Scheduled Jobs" section, New tabs abd buttons on "Threaddumps"
+    Automated dist generation with Ant.   

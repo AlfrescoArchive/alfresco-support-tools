@@ -2,37 +2,120 @@
 
 <@page title=msg("alfresco-threaddump.title") readonly=true>
 
-<div class="column-full">
-    <p class="intro">${msg("alfresco-threaddump.intro-text")?html}</p>
-     
-	<input type="button" value="Get another ThreadDump!" onclick="getdump();" >
-	<input type="button" value="Save All" onclick='saveTextAsFile("viewer");' > 
-	<hr>
-	<div id="control">
-		<input type="button" value="0" class="selector" id="sif0" onclick="ShowiFrame('if0');" >
-	</div>
-	<div id="viewer"  style="
-            overflow: hidden;
-            resize: both;
-			height:768px;
-			width:1024px;
-            " >
-		<iframe id="if0" class="thread" src="/alfresco/s/enterprise/admin/admin-alfresco-threaddump-getone" frameborder="1" height=97% width=97% scrolling="auto" style="display: block;" ></iframe></div>
-	</div>
-</div>
+   <style>
+      .threaddump pre
+      {
+         white-space: pre-wrap;
+      }
+      .highlight
+      {
+         color: #c00;
+      }
+      .selector.selected
+      {
+         background-color: #FFFFFF !important;
+		 border: 1px solid #444 !important;
+		 border-bottom-color: #FFFFFF !important;
+		 z-index: 2;
+      }
+      #viewer
+      {
+         
+		 border: 1px solid #444;
+		 
+         padding:0.5em;
+		 z-index: -1;
+		 position: relative;
+         
+      }
+      button.save
+      {
+         background-color: #6E9E2D;
+      }
+	  .selector
+	  {
+		-webkit-border-bottom-right-radius:0px !important;
+		-moz-border-radius-bottomright:0px !important;
+		border-bottom-right-radius:0px !important;
+		-webkit-border-bottom-left-radius:0px !important;
+		-moz-border-radius-bottomleft:0px !important;
+		border-bottom-left-radius:0px !important;
+		-webkit-border-top-right-radius:8px !important;
+		-moz-border-radius-topright:8px !important;
+		border-top-right-radius:8px !important;
+		-webkit-border-top-left-radius:8px !important;
+		-moz-border-radius-topleft:8px !important;
+		border-top-left-radius:8px !important;
+		background-color: #EEEEEE !important;
+		color: #222 !important;
+		z-index: -1;
+		font-size: 9px;
+		margin-bottom:-1px;
+		
+	  }
+	  
+	  
+	  
+   </style>
+   
+   <div class="column-full">
+      <p class="intro">${msg("alfresco-threaddump.intro-text")?html}</p>
 
+   	<@button label=msg("alfresco-threaddump.get-another") onclick="AdminTD.getDump();"/>
+    <@button id="savecurrent" class="save" label=msg("alfresco-threaddump.savecurrent") onclick="AdminTD.saveTextAsFile('current');"/>
+   	<@button class="save" label=msg("alfresco-threaddump.saveall") onclick="AdminTD.saveTextAsFile('all');"/>
 
-<script type="text/javascript">//<![CDATA[
+   	<@section label="" />
+   	<div id="control" class="buttons"></div>
+    <div id="viewer" class="threaddump"></div>
+   </div>
 
-    function saveTextAsFile(tosave){
-		var textToWrite = "";
-		var allframes = document.getElementsByClassName ('thread');
-	    for (var i = 0; i < allframes.length; i++) {
-			var oIframe = allframes[i] ;
-			var oDoc = (oIframe.contentWindow || oIframe.contentDocument);
-			if (oDoc.document) oDoc = oDoc.document;
-	        textToWrite =textToWrite + oDoc.body.textContent +"\n";
-			};
+   <script type="text/javascript">//<![CDATA[
+      
+/**
+ * Admin Support Tools Component
+ */
+Admin.addEventListener(window, 'load', function() {
+   AdminTD.getDump();
+});
+
+/**
+ * Thread Dump Component
+ */
+var AdminTD = AdminTD || {};
+
+(function() {
+   
+
+   AdminTD.saveTextAsFile = function saveTextAsFile(tosave)
+   {
+      var textToWrite = "";
+   
+      if(tosave === "all")
+      {
+   		var allDumps = document.getElementsByClassName ("thread");
+   		
+         for (var i = 0; i < allDumps.length; i++)
+         {
+            var tDump = allDumps[i].innerHTML;
+            textToWrite += tDump + "\n";
+         }
+      }
+      else
+      {
+         var dump = el(tosave);
+         if(dump)
+         {
+            var tDump = dump.innerHTML;
+            textToWrite += tDump + "\n";
+         }
+      }
+      
+      textToWrite = AdminTD.replaceAll("<span class=\"highlight\">", "", textToWrite);
+      textToWrite = AdminTD.replaceAll("</span>", "", textToWrite);
+	  textToWrite = AdminTD.replaceAll("&lt;", "<", textToWrite);
+	  textToWrite = AdminTD.replaceAll("&gt;", ">", textToWrite);
+            
 		var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
 		var fileNameToSaveAs = "threaddump.txt";
 
@@ -58,41 +141,89 @@
 		downloadLink.click();
 	}
 
-	var counter=0;
+	AdminTD.showTab = function showTab(tabName)
+	{
+      var allTabs = document.getElementsByClassName("thread");
+      for (var i = 0; i < allTabs.length; i++)
+      {
+         if(allTabs[i].id == tabName)
+         {
+            AdminTD.removeClass(allTabs[i], "hidden");
+         }
+         else
+         {
+            AdminTD.addClass(allTabs[i], "hidden");
+         }
+      }
+      
+      var selectors = document.getElementsByClassName("selector");
+      for(var i = 0; i < selectors.length; i++)
+      {
+         if(selectors[i].id == "s" + tabName)
+         {
+            AdminTD.addClass(selectors[i], "selected");
+            el("savecurrent").setAttribute("onclick","AdminTD.saveTextAsFile('" + tabName + "');");
+         }
+         else
+         {
+            AdminTD.removeClass(selectors[i], "selected");
+         }
+      }
+	}
+	
+	AdminTD.getDump = function getDump()
+	{
+      Admin.request({
+         url: "${url.serviceContext}/enterprise/admin/admin-alfresco-threaddump-getone",
+         fnSuccess: function(res)
+         {
+            if (res.responseJSON)
+            {
+               var json = res.responseJSON;
+               
+               var counter = document.getElementsByClassName("thread").length;
+               var viewer = document.getElementById("viewer");
+               var control = document.getElementById("control");
+			   var firstDel = json.threaddump.indexOf(">");			   
+			   var secondDel =json.threaddump.indexOf("<",firstDel);
+               var tabtitle =  json.threaddump.substr( firstDel+1,secondDel-(firstDel+1) );
+			   
+               viewer.innerHTML=viewer.innerHTML + "<pre id=\"td" + counter + "\" class=\"thread hidden\">" + json.threaddump + "</pre>";
+               //control.innerHTML = control.innerHTML + "<input type=\"button\" class=\"selector\" value=\"" + (counter+1) + "\" id=\"std" + counter + "\" onclick=\"AdminTD.showTab('td" + counter + "');\" /> ";
+			   control.innerHTML = control.innerHTML + "<input type=\"button\" class=\"selector\" value=\"" + tabtitle + "\" id=\"std" + counter + "\" onclick=\"AdminTD.showTab('td" + counter + "');\" /> ";
+               
+               AdminTD.showTab("td" + counter);
+            }
+         }
+      });
+	}
+	
+   AdminTD.hasClass = function hasClass(element, clas)
+   {
+      return element.className.match(new RegExp("(\\s|^)" + clas + "(\\s|$)"));
+   }
+	AdminTD.addClass = function addClass(element, clas)
+   {
+      if (!AdminTD.hasClass(element, clas))
+      {
+         element.className += " " + clas;
+      }
+   }
+   AdminTD.removeClass = function removeClass(element, clas)
+   {
+      if (AdminTD.hasClass(element, clas))
+      {
+         var reg = new RegExp("(\\s|^)" + clas + "(\\s|$)");
+         element.className=element.className.replace(reg, " ");
+      }
+   }
+   AdminTD.replaceAll = function replaceAll(find, replace, str)
+   {
+      return str.replace(new RegExp(find, 'g'), replace);
+   }
+	
+})();
 
-	function ShowiFrame(iframeName){
-	 allframes = document.getElementsByClassName ('thread');
-	 for (var i = 0; i < allframes.length; i++) {
-	  if (allframes[i].id==iframeName){
-	   allframes[i].style.display="block";
-	  }
-	  else {
-	   allframes[i].style.display="none";
-	  }
-	 }
-	 selectors = document.getElementsByClassName ('selector');
-	 for (var i = 0; i < selectors.length; i++) {
-	  if (selectors[i].id=="s"+iframeName){
-	   selectors[i].style.backgroundColor="#0000EE";
-	  }
-	  else {
-	   selectors[i].style.backgroundColor="#6E9E2D";
-	  }
-	 }
-	}
-	function getdump(){
-	 counter=counter+1;
-	 viewer = document.getElementById ('viewer');
-	 control = document.getElementById ('control');
-	 
-	 viewer.innerHTML=viewer.innerHTML +' <iframe id="if'+counter+'" class="thread" src="/alfresco/s/enterprise/admin/admin-alfresco-threaddump-getone" frameborder="1" height=97% width=97% scrolling="auto" style="display: block;"></iframe></div>';
-	 control.innerHTML=control.innerHTML +' <input type="button" class="selector" value="'+counter+'" id="sif'+counter+'" onclick="ShowiFrame('+ "'if"+counter+"'"+');" >';
-	 ShowiFrame('if'+counter)
-	}
 //]]></script>
 
-
 </@page>
-
-
-
