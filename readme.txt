@@ -3,6 +3,7 @@
 
 This add-on has been designed to work only in Alfresco Enterprise 4.2 using JDK7 and Tomcat7.
 It probably won't work on Alfresco Community Edition due the lack of JMX connectivity.
+From the client side has been tested to work with current versions of Firefox, IE and Chrome only. 
 
 
 LICENSE:
@@ -61,7 +62,7 @@ ACKNOLEDGEMENTS:
 Special thanks to:
 Mike Farman for his support on this project and parts of the code.
 Marco Mancuso for his help on the development.
-Jamie Allison for his code review and "polish" and improvements.
+Jamie Allison for his code review, "polish" and improvements.
 Will Abson for his useful advice.
 Also to the creators of Smoothie Charts:
 http://smoothiecharts.org/ the library from which was quite useful and fun to use
@@ -72,5 +73,6 @@ VERSION HISTORY:
 1.0 Initial Working version, some UI adjustments needed.
 1.1 Code Reviewed and commited to GitHub
 1.2 UI improvements by Jamie Allison, added ajax to some webscripts for automation ("Active Sessions")
-    Changed the general aspect of the "Scheduled Jobs" section, New tabs abd buttons on "Threaddumps"
-    Automated dist generation with Ant.   
+    Changed the general aspect of the "Scheduled Jobs" section, New tabs and buttons on "Threaddumps"
+    Automated dist generation with Ant.
+1.3  
