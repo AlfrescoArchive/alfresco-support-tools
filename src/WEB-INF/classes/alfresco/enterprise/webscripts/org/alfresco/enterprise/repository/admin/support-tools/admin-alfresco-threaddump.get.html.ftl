@@ -13,58 +13,63 @@
       }
       .selector.selected
       {
-         background-color: #fff !important;
-         border: 1px solid #ccc !important;
-         border-bottom-color: #fff !important;
-         z-index: 2;
+         background-color: #FFFFFF !important;
+		 border: 1px solid #444 !important;
+		 border-bottom-color: #FFFFFF !important;
+		 z-index: 2;
       }
       #viewer
       {
-         border: 1px solid #ccc;
+         
+		 border: 1px solid #444;
+		 
          padding:0.5em;
-         z-index: -1;
-         position: relative;
+		 z-index: -1;
+		 position: relative;
+         
       }
       button.save
       {
-         background-color: #6e9e2d;
+         background-color: #6E9E2D;
       }
 	  .selector
 	  {
-         -webkit-border-bottom-right-radius:0px !important;
-         -moz-border-radius-bottomright:0px !important;
-         border-bottom-right-radius:0px !important;
-         -webkit-border-bottom-left-radius:0px !important;
-         -moz-border-radius-bottomleft:0px !important;
-         border-bottom-left-radius:0px !important;
-         -webkit-border-top-right-radius:8px !important;
-         -moz-border-radius-topright:8px !important;
-         border-top-right-radius:8px !important;
-         -webkit-border-top-left-radius:8px !important;
-         -moz-border-radius-topleft:8px !important;
-         border-top-left-radius:8px !important;
-         border-color: #ccc !important;
-         background-color: #eee !important;
-         color: #222 !important;
-         z-index: -1;
-         font-size: 9px;
-         margin-bottom:-1px;
+		-webkit-border-bottom-right-radius:0px !important;
+		-moz-border-radius-bottomright:0px !important;
+		border-bottom-right-radius:0px !important;
+		-webkit-border-bottom-left-radius:0px !important;
+		-moz-border-radius-bottomleft:0px !important;
+		border-bottom-left-radius:0px !important;
+		-webkit-border-top-right-radius:8px !important;
+		-moz-border-radius-topright:8px !important;
+		border-top-right-radius:8px !important;
+		-webkit-border-top-left-radius:8px !important;
+		-moz-border-radius-topleft:8px !important;
+		border-top-left-radius:8px !important;
+		background-color: #EEEEEE !important;
+		color: #222 !important;
+		z-index: -1;
+		font-size: 9px;
+		margin-bottom:-1px;
+		
 	  }
+	  
+	  
+	  
    </style>
    
    <div class="column-full">
       <p class="intro">${msg("alfresco-threaddump.intro-text")?html}</p>
 
    	<@button label=msg("alfresco-threaddump.get-another") onclick="AdminTD.getDump();"/>
-      <@button id="savecurrent" class="save" label=msg("alfresco-threaddump.savecurrent") onclick="AdminTD.saveTextAsFile('current');"/>
+    <@button id="savecurrent" class="save" label=msg("alfresco-threaddump.savecurrent") onclick="AdminTD.saveTextAsFile('current');"/>
    	<@button class="save" label=msg("alfresco-threaddump.saveall") onclick="AdminTD.saveTextAsFile('all');"/>
 
    	<@section label="" />
    	<div id="control" class="buttons"></div>
-      <div id="viewer" class="threaddump"></div>
+    <div id="viewer" class="threaddump"></div>
    </div>
 
-   <script type="text/javascript" src="${url.context}/scripts/FileSaver.js" />
    <script type="text/javascript">//<![CDATA[
       
 /**
@@ -106,18 +111,34 @@ var AdminTD = AdminTD || {};
          }
       }
       
-      textToWrite = AdminTD.replaceAll("<pre>", "", textToWrite);
-      textToWrite = AdminTD.replaceAll("</pre>", "", textToWrite);
       textToWrite = AdminTD.replaceAll("<span class=\"highlight\">", "", textToWrite);
       textToWrite = AdminTD.replaceAll("</span>", "", textToWrite);
-      textToWrite = AdminTD.replaceAll("&lt;", "<", textToWrite);
-      textToWrite = AdminTD.replaceAll("&gt;", ">", textToWrite);
+	  textToWrite = AdminTD.replaceAll("&lt;", "<", textToWrite);
+	  textToWrite = AdminTD.replaceAll("&gt;", ">", textToWrite);
             
-      var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
-      var fileNameToSaveAs = "threaddump.txt";
+		var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+		var fileNameToSaveAs = "threaddump.txt";
 
-      //Use FileSaver.js to save the file.
-      saveAs(textFileAsBlob, fileNameToSaveAs);
+		var downloadLink = document.createElement("a");
+		downloadLink.download = fileNameToSaveAs;
+		downloadLink.innerHTML = "Download File";
+		if (window.webkitURL != null)
+		{
+			// Chrome allows the link to be clicked
+			// without actually adding it to the DOM.
+			downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+		}
+		else
+		{
+			// Firefox requires the link to be added to the DOM
+			// before it can be clicked.
+			downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+			//downloadLink.onclick = destroyClickedElement;
+			downloadLink.style.display = "none";
+			document.body.appendChild(downloadLink);
+		}
+
+		downloadLink.click();
 	}
 
 	AdminTD.showTab = function showTab(tabName)
@@ -127,12 +148,11 @@ var AdminTD = AdminTD || {};
       {
          if(allTabs[i].id == tabName)
          {
-            Admin.removeClass(allTabs[i], "hidden");
-            el("savecurrent").setAttribute("onclick","AdminTD.saveTextAsFile('" + tabName + "');");
+            AdminTD.removeClass(allTabs[i], "hidden");
          }
          else
          {
-            Admin.addClass(allTabs[i], "hidden");
+            AdminTD.addClass(allTabs[i], "hidden");
          }
       }
       
@@ -141,11 +161,12 @@ var AdminTD = AdminTD || {};
       {
          if(selectors[i].id == "s" + tabName)
          {
-            Admin.addClass(selectors[i], "selected");
+            AdminTD.addClass(selectors[i], "selected");
+            el("savecurrent").setAttribute("onclick","AdminTD.saveTextAsFile('" + tabName + "');");
          }
          else
          {
-            Admin.removeClass(selectors[i], "selected");
+            AdminTD.removeClass(selectors[i], "selected");
          }
       }
 	}
@@ -163,12 +184,13 @@ var AdminTD = AdminTD || {};
                var counter = document.getElementsByClassName("thread").length;
                var viewer = document.getElementById("viewer");
                var control = document.getElementById("control");
-               var startIdx = json.threaddump.indexOf(">") + 1;			   
-               var endIdx = json.threaddump.indexOf("<", startIdx);
-               var tabtitle = json.threaddump.substring(startIdx, endIdx);
+			   var firstDel = json.threaddump.indexOf(">");			   
+			   var secondDel =json.threaddump.indexOf("<",firstDel);
+               var tabtitle =  json.threaddump.substr( firstDel+1,secondDel-(firstDel+1) );
 			   
-               viewer.innerHTML += "<div id=\"td" + counter + "\" class=\"thread hidden\"><pre>" + json.threaddump + "</pre></div>";
-               control.innerHTML += "<input type=\"button\" class=\"selector\" value=\"" + tabtitle + "\" id=\"std" + counter + "\" onclick=\"AdminTD.showTab('td" + counter + "');\" /> ";
+               viewer.innerHTML=viewer.innerHTML + "<pre id=\"td" + counter + "\" class=\"thread hidden\">" + json.threaddump + "</pre>";
+               //control.innerHTML = control.innerHTML + "<input type=\"button\" class=\"selector\" value=\"" + (counter+1) + "\" id=\"std" + counter + "\" onclick=\"AdminTD.showTab('td" + counter + "');\" /> ";
+			   control.innerHTML = control.innerHTML + "<input type=\"button\" class=\"selector\" value=\"" + tabtitle + "\" id=\"std" + counter + "\" onclick=\"AdminTD.showTab('td" + counter + "');\" /> ";
                
                AdminTD.showTab("td" + counter);
             }
@@ -176,6 +198,25 @@ var AdminTD = AdminTD || {};
       });
 	}
 	
+   AdminTD.hasClass = function hasClass(element, clas)
+   {
+      return element.className.match(new RegExp("(\\s|^)" + clas + "(\\s|$)"));
+   }
+	AdminTD.addClass = function addClass(element, clas)
+   {
+      if (!AdminTD.hasClass(element, clas))
+      {
+         element.className += " " + clas;
+      }
+   }
+   AdminTD.removeClass = function removeClass(element, clas)
+   {
+      if (AdminTD.hasClass(element, clas))
+      {
+         var reg = new RegExp("(\\s|^)" + clas + "(\\s|$)");
+         element.className=element.className.replace(reg, " ");
+      }
+   }
    AdminTD.replaceAll = function replaceAll(find, replace, str)
    {
       return str.replace(new RegExp(find, 'g'), replace);
