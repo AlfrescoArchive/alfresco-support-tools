@@ -73,6 +73,6 @@ VERSION HISTORY:
 1.0 Initial Working version, some UI adjustments needed.
 1.1 Code Reviewed and commited to GitHub
 1.2 UI improvements by Jamie Allison, added ajax to some webscripts for automation ("Active Sessions")
-    Changed the general aspect of the "Scheduled Jobs" section, New tabs and buttons on "Threaddumps"
+    Changed the general aspect of the "Scheduled Jobs" section, New tabs abd buttons on "Threaddumps"
     Automated dist generation with Ant.
-1.3  
+1.3 Added filesaver.js to fix the "save all" problem with IE8       
