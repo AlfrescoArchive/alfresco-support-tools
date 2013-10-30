@@ -75,4 +75,5 @@ VERSION HISTORY:
 1.2 UI improvements by Jamie Allison, added ajax to some webscripts for automation ("Active Sessions")
     Changed the general aspect of the "Scheduled Jobs" section, New tabs abd buttons on "Threaddumps"
     Automated dist generation with Ant.
-1.3 Added filesaver.js to fix the "save all" problem with IE8       
+1.3 Added filesaver.js to fix the "save all" problem with IE8
+1.3.1 Error in build xml caused to distribute jmxlogger library on 2 different locations, fixed
