@@ -77,3 +77,7 @@ VERSION HISTORY:
     Automated dist generation with Ant.
 1.3 Added filesaver.js to fix the "save all" problem with IE8
 1.3.1 Error in build xml caused to distribute jmxlogger library on 2 different locations, fixed
+1.4 Added 2 new tools:
+     -Hotthreads: to detect which thread is consuming more CPU time
+     -JMX Settings: to find which beans have values overriden from the DB and revert them
+     

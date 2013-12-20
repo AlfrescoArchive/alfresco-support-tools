@@ -1,0 +1,10 @@
+<webscript>
+   <shortname>JMX Settings</shortname>
+   <description><![CDATA[View and Update JMX Settings]]></description>
+   <url>/enterprise/admin/admin-jmx-settings</url>
+   <family>AdminConsole</family>
+   <format default="html">argument</format>
+   <authentication>admin</authentication>
+   <lifecycle>internal</lifecycle>
+   <transaction allow="readonly">required</transaction>
+</webscript>
