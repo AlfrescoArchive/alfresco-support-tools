@@ -6,7 +6,8 @@
  * Java hotthreads GET method
  */
 
-function stackTrace(stacks, lockedMonitors, thisthread) {
+function stackTrace(stacks, lockedMonitors, thisthread) 
+{
     var stackTrace = "";
     for (var n = 0; n < stacks.length; n++) {
         stack = stacks[n];
@@ -32,16 +33,19 @@ function stackTrace(stacks, lockedMonitors, thisthread) {
     return stackTrace;
 }
 
-function tohex(thisnumber, chars) {
+function tohex(thisnumber, chars) 
+{
     var hexNum = "0x" + ("0000000000000000000" + thisnumber.toString(16)).substr(-1 * chars);
     return hexNum;
 };
 
 
-function main() {
+function main() 
+{
     var tDump = "";
 
-    function format(thisvalue) {
+    function format(thisvalue) 
+    {
         thisvalue = "00" + thisvalue;
         return thisvalue.substr(-2);
     }
@@ -79,16 +83,20 @@ function main() {
     var threads = new Array(); //new sortable array to store all values
 
     for (var n = threaddump.length -1; n >= 0; n--)
-	{
-        threadInfos[threaddump[n].dataMap["threadId"]].info=threaddump[n];
-		threads.push(threadInfos[threaddump[n].dataMap["threadId"]]);
+    {
+        var threadId = threaddump[n].dataMap["threadId"];
+        if (threadInfos[threadId] !== undefined && threadInfos[threadId] !== null)
+        {
+            threadInfos[threadId].info=threaddump[n];
+            threads.push(threadInfos[threadId]);
+        }
     }
 	
 	threads=threads.sort(compareCpuTime);
 
     // Show the 5 hottest threads
-    for (var n = 0 ; n <= 5 ; n++) {		
-		
+    for (var n = 0 ; n <= 5 ; n++) 
+    {				
         var thread = threads[n].info;
         var keys = threads[n].info.dataKeys;
         var thiscputime = threads[n].cpuTime / 10000000;
