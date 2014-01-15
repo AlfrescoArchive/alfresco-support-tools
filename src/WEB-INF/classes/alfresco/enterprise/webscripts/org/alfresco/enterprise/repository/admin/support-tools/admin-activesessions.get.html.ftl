@@ -54,9 +54,9 @@
                <#list listUserNamesNonExpired as user>
                <tr>
                   <td><a href="${url.serviceContext}/api/people?filter=${user.properties.userName?html}">${user.properties.userName?html}</a></td>
-                  <td>${user.properties.firstName?html}</td>
-                  <td>${user.properties.lastName?html}</td>
-                  <td><a href="mailto:${user.properties.email?html}">${user.properties.email?html}</a></td>
+                  <td>${(user.properties.firstName!"")?html}</td>
+                  <td>${(user.properties.lastName!"")?html}</td>
+                  <td><#if user.properties.email??><a href="mailto:${user.properties.email?html}">${user.properties.email?html}</a></#if></td>
                   <td><a href="#" onclick="AdminAS.updateUsers('${user.properties.userName?html}');">${msg("activesessions.users.logoff")?html}</a>
                </tr>
                </#list>
