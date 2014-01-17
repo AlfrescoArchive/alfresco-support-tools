@@ -80,4 +80,7 @@ VERSION HISTORY:
 1.4 Added 2 new tools:
      -Hotthreads: to detect which thread is consuming more CPU time
      -JMX Settings: to find which beans have values overriden from the DB and revert them
+1.4.1 Bugfix for HotThreads, missiing hotthread ids caused an error
+1.4.2 Bugfix for Activesessions, mission properties my cause display error on freemarker.
+
      
