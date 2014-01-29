@@ -67,7 +67,6 @@ Will Abson for his useful advice.
 Also to the creators of Smoothie Charts:
 http://smoothiecharts.org/ the library from which was quite useful and fun to use
 
-
 VERSION HISTORY:
 
 1.0 Initial Working version, some UI adjustments needed.
