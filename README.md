@@ -35,8 +35,9 @@ LICENSE:
 // all copies or substantial portions of the Software.
 
 INSTALLATION:
+
 There are 2 ways to install the tools: using the AMP installation method,  or via quick-deploy:
- 1) For the AMP installation method, place the support-tools-*.amp file into your Alfresco "amps" folder 
+# For the AMP installation method, place the support-tools-*.amp file into your Alfresco "amps" folder 
 and run the script: "bin/apply-amps.[sh|bat]" with the -force switch.
 Alternatively you can execute the following (amending the paths to your case) :
  java -jar ./bin/alfresco-mmt.jar install ./amps/ ./tomcat/webapps/alfresco.war -force
@@ -45,7 +46,7 @@ and then clean out the currently deployed web application by removing :
 - tomcat/work/*
 - tomcat/temp/*
 
-2) Quick-Deploy leaves no trace of the amp on the database. This also lets you use these tools to diagnose a current problem in your environment without needing to  rebooting tomcat:
+# Quick-Deploy leaves no trace of the amp on the database. This also lets you use these tools to diagnose a current problem in your environment without needing to  rebooting tomcat:
 
 Copy the contents of the "src" folder to your /tomcat/webapps/alfresco so the contents are
 merged with your current installation. Once copied, reload webscripts by going to :
@@ -55,6 +56,7 @@ Note: The Tail-Log tool wont cache log entries until the next restart, but the r
 
 
 USAGE:
+
 Go to the URL http://[host]:[port]/alfresco/s/enterprise/admin/
 New scripts will appear under the Support Tools section.
 
