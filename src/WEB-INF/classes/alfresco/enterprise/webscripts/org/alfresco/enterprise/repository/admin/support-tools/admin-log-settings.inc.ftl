@@ -6,7 +6,7 @@
 <div class="column-full">
   <p class="intro">${msg("log-settings.intro-text")?html}</p>
   <@section label=msg("log-settings.logging") />
-
+  <form></form>
   <div class="column-full">
       <form id="addPackage" action="/alfresco/s/enterprise/admin/admin-log-settings" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
         <div>Add logger: <input name="packagename" size="35" placeholder="package.name"></input>
@@ -57,4 +57,3 @@
 </div>
 
 </@page>
-
