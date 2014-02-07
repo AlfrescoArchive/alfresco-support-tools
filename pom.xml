@@ -51,6 +51,10 @@
 		<alfresco.client.war.version>4.2.0</alfresco.client.war.version>
 		<!-- This controls which properties will be picked in src/test/properties 
 			for embedded run -->
+		<maven.release.plugin.version>maven-release-plugin</maven.release.plugin.version>
+		<maven.assembly.plugin>2.4</maven.assembly.plugin>
+		<log4j.patched.version>1.0</log4j.patched.version>
+		<junit.version>4.8.1</junit.version>
 		<env>local</env>
 	</properties>
 
@@ -80,7 +84,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j-patched</artifactId>
-			<version>1.0</version>
+			<version>${log4j.patched.version}</version>
 			<classifier>AlfrescoPatched</classifier>
 		</dependency>
 		<dependency>
@@ -91,7 +95,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -134,9 +138,27 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
-				<version>2.4.2</version>
+				<version>${maven.release.plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven.assembly.plugin}</version>
+				<configuration>
+					<descriptor>src/assembly/bin.xml</descriptor>
+					<finalName>${project.artifactId}-no-restart</finalName>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
+
 	</build>
 
 </project>
