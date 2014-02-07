@@ -1,0 +1,7 @@
+target
+.project
+.classpath
+*.log
+.settings
+alf_data_dev
+alfresco.log.*
