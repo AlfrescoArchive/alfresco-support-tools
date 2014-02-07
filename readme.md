@@ -61,12 +61,12 @@ Go to the URL http:[host]:[port]/alfresco/s/enterprise/admin/
 New scripts will appear under the Support Tools section.
 
 ## Acknowledgments:
-Special thanks to:
-Mike Farman for his support on this project and parts of the code.
-Marco Mancuso for his help on the development.
-Jamie Allison for his code review, "polish" and improvements.
-Will Abson for his useful advice.
-Also to the creators of Smoothie Charts:
+Special thanks to:  
+Mike Farman for his support on this project and parts of the code.  
+Marco Mancuso for his help on the development.  
+Jamie Allison for his code review, "polish" and improvements.  
+Will Abson for his useful advice.  
+Also to the creators of Smoothie Charts:  
 http:smoothiecharts.org/ the library from which was quite useful and fun to use
 
 ## Version history:
