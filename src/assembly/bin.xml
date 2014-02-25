@@ -6,11 +6,11 @@
 	<formats>
 		<format>zip</format>
 	</formats>
-	 <includeBaseDirectory>false</includeBaseDirectory>
+	<includeBaseDirectory>false</includeBaseDirectory>
 	<fileSets>
 		<fileSet>
 			<directory>${project.build.directory}/${project.artifactId}/config/alfresco/extension/templates/webscripts/org/alfresco/enterprise/repository/admin/support-tools</directory>
-			<outputDirectory>/sopport-tools</outputDirectory>
+			<outputDirectory>/alfresco/WEB-INF/classes/alfresco/enterprise/webscripts/org/alfresco/enterprise/repository/admin/support-tools</outputDirectory>
 			<includes>
 				<include>*.xml</include>
 				<include>*.js</include>
@@ -20,9 +20,23 @@
 		</fileSet>
 		<fileSet>
 			<directory>${project.build.directory}/${project.artifactId}/web/scripts</directory>
-			<outputDirectory>/scripts</outputDirectory>
+			<outputDirectory>/alfresco/scripts</outputDirectory>
 			<includes>
 				<include>*.js</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}/${project.artifactId}/lib</directory>
+			<outputDirectory>/alfresco/WEB-INF/lib</outputDirectory>
+			<includes>
+				<include>log4j*.jar</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}/${project.artifactId}/config/alfresco/module/AdminConsoleSupportTools</directory>
+			<outputDirectory>/alfresco/WEB-INF/classes</outputDirectory>
+			<includes>
+				<include>*.properties</include>
 			</includes>
 		</fileSet>
 	</fileSets>
