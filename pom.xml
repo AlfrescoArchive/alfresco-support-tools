@@ -103,11 +103,11 @@
 	<distributionManagement>
 		<repository>
 			<id>alfresco-support-releases</id>
-			<url>https://artifacts.alfresco.com/nexus/content/repositories/alfresco-support-releases</url>
+			<url>https://artifacts.alfresco.com/nexus/content/repositories/alfresco-public-support-releases</url>
 		</repository>
 		<snapshotRepository>
 			<id>alfresco-support-snapshots</id>
-			<url>https://artifacts.alfresco.com/nexus/content/repositories/alfresco-support-snapshots</url>
+			<url>https://artifacts.alfresco.com/nexus/content/repositories/alfresco-public-support-snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 
