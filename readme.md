@@ -39,7 +39,7 @@ all copies or substantial portions of the Software.
 There are 2 ways to install the tools: using the AMP installation method, or via quick-deploy
 Files can be downloaded from:
 
-https://github.com/Alfresco/alfresco-support-tools/releases
+http://github.com/Alfresco/alfresco-support-tools/releases
 
 ### Installation Instructions:
 
@@ -64,6 +64,10 @@ and then clean out the currently deployed web application by removing :
 ## Usage:
 Go to the URL http:[host]:[port]/alfresco/s/enterprise/admin/
 New scripts will appear under the Support Tools section.
+
+This wiki page explains how to use each one of the tools:
+
+http://github.com/Alfresco/alfresco-support-tools/wiki
 
 ## Acknowledgments:
 Special thanks to:  
