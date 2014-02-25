@@ -36,7 +36,12 @@ The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
 ## Installation:
-There are 2 ways to install the tools: using the AMP installation method,  or via quick-deploy:
+There are 2 ways to install the tools: using the AMP installation method, or via quick-deploy
+Files can be downloaded from:
+
+https://github.com/Alfresco/alfresco-support-tools/releases
+
+### Installation Instructions:
 
 1. For the AMP installation method, place the support-tools-*.amp file into your Alfresco "amps" folder 
 and run the script: "bin/apply-amps.[sh|bat]" with the -force switch.
@@ -49,7 +54,7 @@ and then clean out the currently deployed web application by removing :
 
 2. Quick-Deploy leaves no trace of the amp on the database. This also lets you use these tools to diagnose a current problem in your environment without needing to  rebooting tomcat:
 
-	Copy the contents of the "src" folder to your /tomcat/webapps/alfresco so the contents are
+	Copy the contents of the "support-tools-no-restart-distribution.zip" file to your /tomcat/webapps/alfresco so the contents are
 	merged with your current installation. Once copied, reload webscripts by going to :
 	http:[host]:[port]/alfresco/service/index
 	and clicking on "Refresh Web Scripts"
