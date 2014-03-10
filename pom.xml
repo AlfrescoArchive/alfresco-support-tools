@@ -83,8 +83,7 @@
 		<alfresco.client.war.version>4.2.0</alfresco.client.war.version>
 		<!-- This controls which properties will be picked in src/test/properties 
 			for embedded run -->
-		<maven.release.plugin.version>maven-release-plugin</maven.release.plugin.version>
-		<maven.assembly.plugin>2.4</maven.assembly.plugin>
+		<maven.release.plugin.version>2.4.1</maven.release.plugin.version>
 		<log4j.patched.version>1.0</log4j.patched.version>
 		<junit.version>4.8.1</junit.version>
 		<env>local</env>

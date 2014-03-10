@@ -35,6 +35,10 @@ THE SOFTWARE.**_
 The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
+## Releases
+
+It's possible to download the last release here
+
 ## Installation
 There are two options to install the tools using the AMP: the standard and the hot deploy.
 
