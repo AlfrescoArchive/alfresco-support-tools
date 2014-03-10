@@ -5,3 +5,5 @@ target
 .settings
 alf_data_dev
 alfresco.log.*
+RemoteSystemsTempFiles
+.metadata
