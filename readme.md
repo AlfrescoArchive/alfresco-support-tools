@@ -1,16 +1,16 @@
-# Alfresco Support Tools for the new Admin console in Alfresco 4.2
- 
-
-This add-on has been designed to work only in Alfresco Enterprise 4.2 using JDK7 and Tomcat7.
-It probably won't work on Alfresco Community Edition due the lack of JMX connectivity.
+# Alfresco Support Tools for the new Admin console in Alfresco 4.2    
+    
+    
+This add-on has been designed to work only in **Alfresco Enterprise 4.2** using JDK7 and Tomcat7.  
+It probably won't work on Alfresco Community Edition due the lack of JMX connectivity.  
 From the client side has been tested to work with current versions of Firefox, IE and Chrome only. 
 
 
-## License:
+## License
 
 Copyright (c) 2013, Alfresco Software Ltd. October 2013
 
-Author: Antonio Soler, antonio.soler@alfresco.com
+**Author:** Antonio Soler, antonio.soler@alfresco.com
 
 Alfresco is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -35,55 +35,64 @@ THE SOFTWARE.**_
 The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
-## Installation:
-There are 2 ways to install the tools: using the AMP installation method, or via quick-deploy
-Files can be downloaded from:
+## Installation
+There are two options to install the tools using the AMP: the standard and the hot deploy.
 
-http://github.com/Alfresco/alfresco-support-tools/releases
+1. ###Standard
 
-### Installation Instructions:
+  *	Place the _support-tools-*.amp_ file into your Alfresco _amps_ folder 
+  * Run the script: **bin/apply-amps.[sh|bat]** with the **-force** switch.
+  
+  Alternatively it is possible to: 
+  *	Execute the following command (amending the paths to your case):
+  
+    		java -jar ./bin/alfresco-mmt.jar install ./amps/ ./tomcat/webapps/alfresco.war -force -verbose
+  
+  *	Clean out the currently deployed web application by removing :
+  	* tomcat/webapps/alfresco/*
+  	* tomcat/work/*
+  	* tomcat/temp/*
 
-1. For the AMP installation method, place the support-tools-*.amp file into your Alfresco "amps" folder 
-and run the script: "bin/apply-amps.[sh|bat]" with the -force switch.
-Alternatively you can execute the following (amending the paths to your case) :
- java -jar ./bin/alfresco-mmt.jar install ./amps/ ./tomcat/webapps/alfresco.war -force
-and then clean out the currently deployed web application by removing :
-	* tomcat/webapps/alfresco/*
-	* tomcat/work/*
-	* tomcat/temp/*
+2. ###Hot-Deploy
 
-2. Quick-Deploy leaves no trace of the amp on the database. This also lets you use these tools to diagnose a current problem in your environment without needing to  rebooting tomcat:
+  This method lets you use the tool without rebooting your application server.
+	* Execute the following command (amending the paths to your case):
 
-	Copy the contents of the "support-tools-no-restart-distribution.zip" file to your /tomcat/webapps/alfresco so the contents are
-	merged with your current installation. Once copied, reload webscripts by going to :
-	http:[host]:[port]/alfresco/service/index
-	and clicking on "Refresh Web Scripts"
-	Note: The Tail-Log tool wont cache log entries until the next restart, but the rest of the webscripts will work.
+			java -jar ./bin/alfresco-mmt.jar install ./amps/support-tools.amp ./tomcat/webapps/alfresco -force -verbose -nobackup
+    
+		Be aware it is mandatory to point the installation to the alfresco webapp folder, differently from the war used at point 1, and to use the **-nobackup** switch. 
+	
+	* Reload webscripts by going to:
+	
+			http:[host]:[port]/alfresco/service/index
+	
+	* click on _"Refresh Web Scripts"_
+	
+  **Important Note:** The Tail-Log tool won't cache log entries until the next restart, but the rest of the webscripts will work.
 
 
-## Usage:
-Go to the URL http:[host]:[port]/alfresco/s/enterprise/admin/
-New scripts will appear under the Support Tools section.
-
-This wiki page explains how to use each one of the tools:
-
-http://github.com/Alfresco/alfresco-support-tools/wiki
+## Usage
+Go to the URL
+    
+    http:[host]:[port]/alfresco/s/enterprise/admin/
+    
+New scripts will appear under the **Support Tools section**.
 
 ## Acknowledgments:
-Special thanks to:  
-Mike Farman for his support on this project and parts of the code.  
-Marco Mancuso for his help on the development.  
-Jamie Allison for his code review, "polish" and improvements.  
-Will Abson for his useful advice.  
-Also to the creators of Smoothie Charts:  
-http:smoothiecharts.org/ the library from which was quite useful and fun to use
+**Special thanks to:**  
+* Mike Farman for his support on this project and parts of the code.  
+* Marco Mancuso for his help on the development.  
+* Jamie Allison for his code review, "polish" and improvements.  
+* Will Abson for his useful advice.  
+* The Smoothie Charts creators: 
+	http:smoothiecharts.org/ the library from which was quite useful and fun to use
 
-## Version history:
+## Version history
 
  1.0 Initial Working version, some UI adjustments needed  
  1.1 Code Reviewed and commited to GitHub  
- 1.2 UI improvements by Jamie Allison, added ajax to some webscripts for automation ("Active Sessions")  
-	 Changed the general aspect of the "Scheduled Jobs" section, New tabs abd buttons on "Threaddumps"
+ 1.2 UI improvements by Jamie Allison, added ajax to some webscripts for automation ("Active Sessions")   
+	 Changed the general aspect of the "Scheduled Jobs" section, New tabs abd buttons on "Threaddumps"   
      Automated dist generation with Ant.  
  1.3. Added filesaver.js to fix the "save all" problem with IE8  
  1.3.1. Error in build xml caused to distribute jmxlogger library on 2 different locations, fixed   
