@@ -68,10 +68,7 @@ Go to the URL
     
 New scripts will appear under the **Support Tools section**.
 
-This wiki page explains how to use each one of the tools:
-
-http://github.com/Alfresco/alfresco-support-tools/wiki
-
+This [wiki page](http://github.com/Alfresco/alfresco-support-tools/wiki) explains how to use each one of the tools:
 
 ## Acknowledgments:
 **Special thanks to:**  
