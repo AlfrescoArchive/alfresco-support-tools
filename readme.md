@@ -24,6 +24,7 @@ If you are using Maven you can retrieve the AMP by:
   <type>amp</type>
 </dependency>
 	```
+    *NOTE*: You can also directly install the AMP in your WAR using the Maven Alfresco SDK, see [details here](https://artifacts.alfresco.com/nexus/content/groups/public/alfresco-lifecycle-aggregator/latest/plugins/alfresco-maven-plugin/advanced-usage.html).
 
 ## Installation
 There are two options to install the tools using the AMP: the standard and the hot deploy.
