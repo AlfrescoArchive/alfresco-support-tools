@@ -12,9 +12,9 @@ It's possible to download all  source / binary releases from the Alfresco Artifa
 
 If you are using Maven you can retrieve the AMP by:
 
-   * Adding `https://artifacts.alfresco.com/nexus/content/groups/public/` repository to your pom.xml 
-   * Check what's the latest version available by [searching the repository](https://artifacts.alfresco.com/nexus/index.html#nexus-search;gav~org.alfresco.support~support-tools~~amp~)
-   * Adding the following dependency to your POM: (latest version: 1.5 at the time of this writing)
+   # Adding `https://artifacts.alfresco.com/nexus/content/groups/public/` repository to your pom.xml 
+   # Check what's the latest version available by [searching the repository](https://artifacts.alfresco.com/nexus/index.html#nexus-search;gav~org.alfresco.support~support-tools~~amp~)
+   # Adding the following dependency to your POM: (latest version: 1.5 at the time of this writing)
 
 	```xml
 <dependency>
