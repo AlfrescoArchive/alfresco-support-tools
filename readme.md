@@ -106,8 +106,8 @@ http://github.com/Alfresco/alfresco-support-tools/wiki
  1.3. Added filesaver.js to fix the "save all" problem with IE8  
  1.3.1. Error in build xml caused to distribute jmxlogger library on 2 different locations, fixed   
  1.4. Added 2 new tools:  
-	* Hotthreads: to detect which thread is consuming more CPU time  
-	* JMX Settings: to find which beans have values overriden from the DB and revert them  
- 1.4.1 Bugfix for HotThreads, missing hotthread ids caused an error  
+	* Hotthreads: to detect which thread is consuming more CPU time.  
+	* JMX Settings: to find which beans have values overriden from the DB and revert them.  
+ 1.4.1 Bugfix for HotThreads, missing hotthread ids caused an error.  
  1.4.2 Bugfix for Activesessions, missing properties my cause display error on freemarker.
- 1.5 Change on the folder Structure and added pom.xml to be Maven compliant
+ 1.5 Change on the folder Structure and added pom.xml to be Maven compliant.
