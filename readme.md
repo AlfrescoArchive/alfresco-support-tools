@@ -3,37 +3,6 @@
     
 This add-on has been designed to work only in Alfresco Enterprise 4.2 using JDK7 and Tomcat7. This provides the Alfresco Admin a set of tools to help troubleshoot performance issues.
 It probably won't work on Alfresco Community Edition due the lack of JMX connectivity. From the client side has been tested to work with current versions of Firefox, IE and Chrome only. 
- 
-
-
-## License
-
-Copyright (c) 2013, Alfresco Software Ltd. October 2013
-
-**Author:** Antonio Soler, antonio.soler@alfresco.com
-
-Alfresco is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Alfresco is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-See <http:www.gnu.org/licenses/>.
-
-_**THIS SOFTWARE IT IS NOT DIRECTLY SUPPORTED OR MAINTAINED BY ALFRESCO LTD.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR    
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,       
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE   
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER        
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN      
-THE SOFTWARE.**_
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
 
 ## Download
 
@@ -43,9 +12,9 @@ It's possible to download the latest source / binary release from the Alfresco A
 
 If you are using Maven you can retrieve the AMP by:
 
-   * Adding <pre>https://artifacts.alfresco.com/nexus/content/groups/public/</pre> repository to your <pre>pom.xml</pre> 
+   * Adding <pre>https://artifacts.alfresco.com/nexus/content/groups/public/</pre> repository to your pom.xml 
    * Adding the following dependency to your POM: (always check the latest version)
-
+   <pre>
 	<dependency>
 	  <groupId>org.alfresco.support</groupId>
 	  <artifactId>support-tools</artifactId>
@@ -124,5 +93,34 @@ http://github.com/Alfresco/alfresco-support-tools/wiki
 	* JMX Settings: to find which beans have values overriden from the DB and revert them.  
  1.4.1 Bugfix for HotThreads, missing hotthread ids caused an error.  
  1.4.2 Bugfix for Activesessions, missing properties my cause display error on freemarker.
-
  1.5 Change on the folder Structure and added pom.xml to be Maven compliant.
+
+
+## License
+
+Copyright (c) 2013, Alfresco Software Ltd. October 2013
+
+**Author:** Antonio Soler, antonio.soler@alfresco.com
+
+Alfresco is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Alfresco is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+See <http:www.gnu.org/licenses/>.
+
+_**THIS SOFTWARE IT IS NOT DIRECTLY SUPPORTED OR MAINTAINED BY ALFRESCO LTD.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.**_
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
