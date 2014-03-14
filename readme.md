@@ -37,7 +37,8 @@ all copies or substantial portions of the Software.
 
 ## Releases
 
-It's possible to download the last release here
+It's possible to download the last release here:
+https://artifacts.alfresco.com/nexus/content/repositories/alfresco-public-support-releases/org/alfresco/support/support-tools/
 
 ## Installation
 There are two options to install the tools using the AMP: the standard and the hot deploy.
