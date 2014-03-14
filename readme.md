@@ -6,20 +6,20 @@ It probably won't work on Alfresco Community Edition due the lack of JMX connect
 
 ## Download
 
-It's possible to download the latest source / binary release from the Alfresco Artifact repository [here](https://artifacts.alfresco.com/nexus/index.html#nexus-search;gav~org.alfresco.support~support-tools~~amp~).
+It's possible to download all  source / binary releases from the Alfresco Artifact repository [here](https://artifacts.alfresco.com/nexus/content/groups/public/org/alfresco/support/support-tools/).
 
 ### Usage with Maven
 
 If you are using Maven you can retrieve the AMP by:
 
    * Adding <pre>https://artifacts.alfresco.com/nexus/content/groups/public/</pre> repository to your pom.xml 
-   * Adding the following dependency to your POM: (always check the latest version)
-   <pre>
+   * Check what's the latest version available by [searching the repository](https://artifacts.alfresco.com/nexus/index.html#nexus-search;gav~org.alfresco.support~support-tools~~amp~)
+   * Adding the following dependency to your POM: (latest version: 1.5 at the time of this writing)
 	<dependency>
-	  <groupId>org.alfresco.support</groupId>
-	  <artifactId>support-tools</artifactId>
-	  <version>1.5</version>
-	  <type>amp</type>
+		<groupId>org.alfresco.support</groupId>
+		<artifactId>support-tools</artifactId>
+		<version>1.5</version>
+		<type>amp</type>
 	</dependency>
 
 ## Installation
