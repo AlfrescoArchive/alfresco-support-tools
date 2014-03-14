@@ -35,10 +35,23 @@ THE SOFTWARE.**_
 The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
-## Releases
+## Download
 
-It's possible to download the last release here:
-https://artifacts.alfresco.com/nexus/content/repositories/alfresco-public-support-releases/org/alfresco/support/support-tools/
+It's possible to download the latest source / binary release from the Alfresco Artifact repository [here](https://artifacts.alfresco.com/nexus/index.html#nexus-search;gav~org.alfresco.support~support-tools~~amp~).
+
+### Usage with Maven
+
+If you are using Maven you can retrieve the AMP by:
+
+   * Adding <pre>https://artifacts.alfresco.com/nexus/content/groups/public/</pre> repository to your <pre>pom.xml</pre> 
+   * Adding the following dependency to your POM: (always check the latest version)
+
+	<dependency>
+	  <groupId>org.alfresco.support</groupId>
+	  <artifactId>support-tools</artifactId>
+	  <version>1.5</version>
+	  <type>amp</type>
+	</dependency>
 
 ## Installation
 There are two options to install the tools using the AMP: the standard and the hot deploy.
