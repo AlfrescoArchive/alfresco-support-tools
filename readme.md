@@ -28,7 +28,7 @@ If you are using Maven you can retrieve the AMP by:
 ## Installation
 There are two options to install the tools using the AMP: the standard and the hot deploy.
 
-1. ###Standard
+### 1. Standard
 
   *	Place the _support-tools-*.amp_ file into your Alfresco _amps_ folder 
   * Run the script: **bin/apply-amps.[sh|bat]** with the **-force** switch.
@@ -43,7 +43,7 @@ There are two options to install the tools using the AMP: the standard and the h
   	* tomcat/work/*
   	* tomcat/temp/*
 
-2. ###Hot-Deploy
+### 2. Hot-Deploy
 
   This method lets you use the tool without rebooting your application server.
 	* Execute the following command (amending the paths to your case):
