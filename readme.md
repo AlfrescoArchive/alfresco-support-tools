@@ -1,4 +1,4 @@
-# Alfresco Support Tools for the new Admin console in Alfresco 4.2    
+# Alfresco Support Admin Tools    
     
     
 This add-on has been designed to work only in **Alfresco Enterprise 4.2** using JDK7 and Tomcat7.  
