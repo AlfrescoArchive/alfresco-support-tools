@@ -17,10 +17,10 @@ If you are using Maven you can retrieve the AMP by:
    * Adding the following dependency to your POM: (latest version: 1.5 at the time of this writing)
 	```
 <dependency>
-	<groupId>org.alfresco.support</groupId>
- 	<artifactId>support-tools</artifactId>
-	<version>1.5</version>
-	<type>amp</type>
+<groupId>org.alfresco.support</groupId>
+<artifactId>support-tools</artifactId>
+<version>1.5</version>
+<type>amp</type>
 </dependency>
 	```
 
