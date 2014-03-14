@@ -82,6 +82,11 @@ Go to the URL
     
 New scripts will appear under the **Support Tools section**.
 
+This wiki page explains how to use each one of the tools:
+
+http://github.com/Alfresco/alfresco-support-tools/wiki
+
+
 ## Acknowledgments:
 **Special thanks to:**  
 * Mike Farman for his support on this project and parts of the code.  
@@ -104,4 +109,5 @@ New scripts will appear under the **Support Tools section**.
 	* Hotthreads: to detect which thread is consuming more CPU time  
 	* JMX Settings: to find which beans have values overriden from the DB and revert them  
  1.4.1 Bugfix for HotThreads, missing hotthread ids caused an error  
- 1.4.2 Bugfix for Activesessions, missing properties my cause display error on freemarker.   
+ 1.4.2 Bugfix for Activesessions, missing properties my cause display error on freemarker.
+ 1.5 Change on the folder Structure and added pom.xml to be Maven compliant
