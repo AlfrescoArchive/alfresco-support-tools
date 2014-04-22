@@ -1,7 +1,7 @@
 # Alfresco Support Admin Tools    
     
     
-This add-on has been designed to work only in Alfresco Enterprise 4.2 using JDK7 and Tomcat7. This provides the Alfresco Admin a set of tools to help troubleshoot performance issues.
+This add-on has been designed to work only in Alfresco Enterprise 4.2.x using JDK7 and Tomcat7. This provides the Alfresco Admin a set of tools to help troubleshoot performance issues.
 It probably won't work on Alfresco Community Edition due the lack of JMX connectivity. From the client side has been tested to work with current versions of Firefox, IE and Chrome only. 
 
 ## Download
@@ -74,7 +74,7 @@ This [wiki page](http://github.com/Alfresco/alfresco-support-tools/wiki) explain
 ## Acknowledgments:
 **Special thanks to:**  
 * Mike Farman for his support on this project and parts of the code.  
-* Marco Mancuso for his help on the development.  
+* Marco Mancuso for his help on the development and adapting it to Maven standards.  
 * Jamie Allison for his code review, "polish" and improvements.  
 * Will Abson for his useful advice.  
 * The Smoothie Charts creators: 
