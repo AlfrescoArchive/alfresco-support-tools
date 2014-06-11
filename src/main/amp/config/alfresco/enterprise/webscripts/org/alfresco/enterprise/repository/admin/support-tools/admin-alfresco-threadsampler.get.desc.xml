@@ -1,0 +1,10 @@
+<webscript>
+   <shortname>Thread Sampler</shortname>
+   <description><![CDATA[Generate Thread Sampler.]]></description>
+   <url>/enterprise/admin/admin-alfresco-threadsampler</url>
+   <family>AdminConsole</family>
+   <format default="html">argument</format>
+   <authentication>admin</authentication>
+   <lifecycle>internal</lifecycle>
+   <transaction allow="readwrite">required</transaction>
+</webscript>
