@@ -417,7 +417,7 @@ function handleFileSelect(evt)
 	}
 
 	// Read in the image file as a binary string.
-	reader.readAsBinaryString(evt.target.files[0]);
+	reader.readAsText(evt.target.files[0]);
 
 }
 
