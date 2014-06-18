@@ -1,0 +1,10 @@
+<webscript>
+   <shortname>Log4j Settings</shortname>
+   <description><![CDATA[View and Update Log4j Settings]]></description>
+   <url>/enterprise/admin/admin-log-settings</url>
+   <family>AdminConsole</family>
+   <format default="html">argument</format>
+   <authentication>admin</authentication>
+   <lifecycle>internal</lifecycle>
+   <transaction allow="readonly">required</transaction>
+</webscript>

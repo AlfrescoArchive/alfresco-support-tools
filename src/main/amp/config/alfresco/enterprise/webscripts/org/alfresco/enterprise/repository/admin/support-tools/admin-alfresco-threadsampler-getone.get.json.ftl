@@ -1,0 +1,8 @@
+{
+"threaddump": 
+[
+{
+${threadDump}
+}
+]
+}
