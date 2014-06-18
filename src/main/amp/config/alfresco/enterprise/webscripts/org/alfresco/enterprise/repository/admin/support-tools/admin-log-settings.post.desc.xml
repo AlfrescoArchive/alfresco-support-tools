@@ -1,8 +1,0 @@
-<webscript>
-   <shortname>Admin Console - Set Log Settings</shortname>
-   <description><![CDATA[Admin Console WebScript that displays the Log Settings page.]]></description>
-   <url>/enterprise/admin/admin-log-settings</url>
-   <format default="html">argument</format>
-   <authentication>admin</authentication>
-   <lifecycle>internal</lifecycle>
-</webscript>

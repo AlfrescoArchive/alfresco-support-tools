@@ -1,9 +1,0 @@
-<webscript>
-   <shortname>Admin Console - Active Sessions Update Users</shortname>
-   <description><![CDATA[Admin Active Sessions - update active user list and logout named user.]]></description>
-   <url>/enterprise/admin/admin-activesessions-updateusers</url>
-   <format default="json">argument</format>
-   <authentication>admin</authentication>
-   <lifecycle>internal</lifecycle>
-   <transaction allow="readonly">required</transaction>
-</webscript>

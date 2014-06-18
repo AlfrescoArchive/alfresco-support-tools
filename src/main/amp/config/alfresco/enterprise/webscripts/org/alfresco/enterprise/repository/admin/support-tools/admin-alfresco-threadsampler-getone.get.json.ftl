@@ -1,8 +1,0 @@
-{
-"threaddump": 
-[
-{
-${threadDump}
-}
-]
-}

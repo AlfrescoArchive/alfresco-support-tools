@@ -1,9 +1,0 @@
-<webscript>
-   <shortname>Admin Console - scheduledjobs-execute</shortname>
-   <description><![CDATA[Admin Console WebScript apply a new license.]]></description>
-   <url>/enterprise/admin/admin-scheduledjobs-execute</url>
-   <format default="html" />
-   <authentication>admin</authentication>
-   <lifecycle>internal</lifecycle>
-   <transaction allow="readonly">required</transaction>
-</webscript>

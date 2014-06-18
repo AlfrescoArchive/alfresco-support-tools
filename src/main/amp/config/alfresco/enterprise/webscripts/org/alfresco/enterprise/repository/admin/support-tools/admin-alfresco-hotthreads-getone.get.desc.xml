@@ -1,9 +1,0 @@
-<webscript>
-   <shortname>Hot Threads - GetOne</shortname>
-   <description><![CDATA[Generate Hot Threads.]]></description>
-   <url>/enterprise/admin/admin-alfresco-hotthreads-getone</url>
-   <format default="json">argument</format>
-   <authentication>admin</authentication>
-   <lifecycle>internal</lifecycle>
-   <transaction allow="readwrite">required</transaction>
-</webscript>

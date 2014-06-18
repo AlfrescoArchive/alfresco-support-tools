@@ -1,8 +1,0 @@
-<webscript>
-   <shortname>Admin Console - Set JMX Settings</shortname>
-   <description><![CDATA[Admin Console WebScript that displays the JMX Settings page.]]></description>
-   <url>/enterprise/admin/admin-jmx-settings</url>
-   <format default="html">argument</format>
-   <authentication>admin</authentication>
-   <lifecycle>internal</lifecycle>
-</webscript>

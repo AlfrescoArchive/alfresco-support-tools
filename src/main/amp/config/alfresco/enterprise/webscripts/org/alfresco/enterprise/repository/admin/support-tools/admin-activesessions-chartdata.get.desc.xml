@@ -1,9 +1,0 @@
-<webscript>
-   <shortname>Admin Console - activesessions-chartdata</shortname>
-   <description><![CDATA[Admin Active Sessions - get chart data.]]></description>
-   <url>/enterprise/admin/admin-activesessions-chartdata</url>
-   <format default="json"/>
-   <authentication>admin</authentication>
-   <lifecycle>internal</lifecycle>
-   <transaction allow="readonly">required</transaction>
-</webscript>
