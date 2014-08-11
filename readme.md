@@ -94,7 +94,9 @@ This [wiki page](http://github.com/Alfresco/alfresco-support-tools/wiki) explain
 	* JMX Settings: to find which beans have values overriden from the DB and revert them.  
  1.4.1 Bugfix for HotThreads, missing hotthread ids caused an error.  
  1.4.2 Bugfix for Activesessions, missing properties my cause display error on freemarker.
- 1.5 Change on the folder Structure and added pom.xml to be Maven compliant.
+ 
+ 1.5. Change on the folder Structure and added pom.xml to be Maven compliant.
+ 1.6. New Utility: ThreadSampler, an integrated thread analyser tool that allows to generate and save thread execution reports
 
 
 ## License
