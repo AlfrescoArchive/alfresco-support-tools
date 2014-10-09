@@ -49,7 +49,6 @@
 		<connection>scm:git:git@github.com:Alfresco/alfresco-support-tools</connection>
 		<url>scm:git:git@github.com:Alfresco/alfresco-support-tools</url>
 		<developerConnection>scm:git:git@github.com:Alfresco/alfresco-support-tools</developerConnection>
-	  <tag>HEAD</tag>
   </scm>
 
 	<parent>
@@ -82,7 +81,7 @@
 		<alfresco.client.war.version>4.2.0</alfresco.client.war.version>
 		<!-- This controls which properties will be picked in src/test/properties 
 			for embedded run -->
-		<maven.release.plugin.version>2.4.1</maven.release.plugin.version>
+		<maven.release.plugin.version>2.5.1</maven.release.plugin.version>
 		<log4j.patched.version>1.0</log4j.patched.version>
 		<junit.version>4.8.1</junit.version>
 		<env>local</env>
