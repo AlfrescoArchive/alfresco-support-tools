@@ -60,7 +60,7 @@
 			<@button id="stoptimer" label="Stop" description="" onclick="AdminTL.stoptimer();" /> </td>				
 		<td>Refreshing interval:<input name="myinterval" id="myinterval" size="3" placeholder="myinterval" value=3></td>
 		<td> Timer:<input name="countdown" id="countdown" size="3" placeholder="countdown" value=3 disabled = true > </td>
-		<td><img src="${url.context}/images/filetypes32/txt.gif" onclick="AdminTL.stoptimer();AdminTL.switchmode();"></td>
+		<td><img src="${url.context}/images/filetypes/txt.gif" onclick="AdminTL.stoptimer();AdminTL.switchmode();"></td>
 	</tr></tbody></table>
 	</div>
  
