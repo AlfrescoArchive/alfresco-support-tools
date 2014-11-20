@@ -18,28 +18,38 @@ function main() {
 
     for (var i in configurationBeans) 
 	{
+		var pushed = false;
         for (var attribute in configurationBeans[i].attributes) 
 		{
-            if (model.globalProperties.attributes[attribute]) 
+            var persistedValue = support_tools.getPersistedMbeanValue(configurationBeans[i].className,attribute);
+            if (persistedValue != null) 
 			{
                 var reg = /\${(.+)}/;
-                var processedChain = model.globalProperties.attributes[attribute].value;
-                var testarray = processedChain.match(reg);
-
-                while (null !== testarray) 
-				{
-                    //print(">>> I've replaced----" + testarray[1] );
-                    processedChain = processedChain.replace("${" + testarray[1] + "}", model.globalProperties.attributes[testarray[1]].value);
-                    testarray = processedChain.match(reg);
+                var processedChain=null;
+                if (model.globalProperties.attributes[attribute] != null) {
+	                processedChain = model.globalProperties.attributes[attribute].value;
+	                var testarray = processedChain.match(reg);
+	
+	                while (null !== testarray) 
+					{
+	                    //print(">>> I've replaced----" + testarray[1] );
+	                    processedChain = processedChain.replace("${" + testarray[1] + "}", model.globalProperties.attributes[testarray[1]].value);
+	                    testarray = processedChain.match(reg);
+	                }
+				}
+				
+                
+                if (processedChain == null) {
+                	processedChain="<span style='color: red'>**** NOT SET ****</span>";
                 }
-
-                if ((processedChain > configurationBeans[i].attributes[attribute].value) || (processedChain < configurationBeans[i].attributes[attribute].value)) 
-				{
-                    
-					matchingBeans.push (configurationBeans[i]) ; //print(attribute + " " + processedChain + " " + configurationBeans[i].attributes[attribute].value);
-					
-					matchingAttributes[attribute] = processedChain ;
+                
+                if (!pushed) {
+                	matchingBeans.push (configurationBeans[i]) ; //print(attribute + " " + processedChain + " " + configurationBeans[i].attributes[attribute].value);
+                	pushed=true;
                 }
+                	
+				
+				matchingAttributes[attribute] = processedChain ;
             }
         }
     }
