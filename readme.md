@@ -77,8 +77,9 @@ This [wiki page](http://github.com/Alfresco/alfresco-support-tools/wiki) explain
 * Marco Mancuso for his help on the development and adapting it to Maven standards.  
 * Jamie Allison for his code review, "polish" and improvements.  
 * Will Abson for his useful advice.  
-* The Smoothie Charts creators: 
-	http:smoothiecharts.org/ the library from which was quite useful and fun to use
+* The Smoothie Charts creators: http:smoothiecharts.org/ the library from which was quite useful and fun to use
+* Rich McKnight for his JMX persisted values contribution to find on an easier mode what is overriden from the db.
+* Craig Tan for his code fixing.
 
 ## Version history
 
