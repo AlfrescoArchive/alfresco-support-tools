@@ -117,7 +117,7 @@ var AdminTD = AdminTD || {};
 	  textToWrite = AdminTD.replaceAll("&gt;", ">", textToWrite);
             
 		var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
-		var fileNameToSaveAs = "hotthreads.txt";
+		var fileNameToSaveAs = "threaddump.txt";
 
 	    var ie = navigator.userAgent.match(/MSIE\s([\d.]+)/),
 	        ie11 = navigator.userAgent.match(/Trident\/7.0/) && navigator.userAgent.match(/rv:11/),
@@ -149,8 +149,7 @@ var AdminTD = AdminTD || {};
 				//downloadLink.onclick = destroyClickedElement;
 				downloadLink.style.display = "none";
 				document.body.appendChild(downloadLink);
-			}
-	
+			}	
 			downloadLink.click();
 		}
 	}
