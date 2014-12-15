@@ -53,7 +53,7 @@
             <tbody>
                <#list listUserNamesNonExpired as user>
                <tr>
-                  <td><a href="${url.serviceContext}/api/people?filter=${user.properties.userName?html}">${user.properties.userName?html}</a></td>
+                  <td><a href="${url.serviceContext}/api/people/${user.properties.userName?html}">${user.properties.userName?html}</a></td>
                   <td>${(user.properties.firstName!"")?html}</td>
                   <td>${(user.properties.lastName!"")?html}</td>
                   <td><#if user.properties.email??><a href="mailto:${user.properties.email?html}">${user.properties.email?html}</a></#if></td>
@@ -142,7 +142,7 @@ var AdminAS = AdminAS || {};
                   for(var i = 0; i < users.length; i++)
                   {
                      var row = new Array();
-                     row[0] = "<a href=\"${url.serviceContext}/api/people?filter=" + users[i].username + "\">" + users[i].username + "</a>";
+                     row[0] = "<a href=\"${url.serviceContext}/api/people/" + users[i].username + "\">" + users[i].username + "</a>";
                      row[1] = users[i].firstName;
                      row[2] = users[i].lastName;
                      row[3] = "<a href=\"mailto:" + users[i].email + "\">" + users[i].email + "</a>";
