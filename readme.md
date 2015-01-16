@@ -1,7 +1,7 @@
 # Alfresco Support Admin Tools    
     
     
-This add-on has been designed to work only in Alfresco Enterprise 4.2.x or above using JDK7 and Tomcat7. This provides the Alfresco Admin a set of tools to help troubleshoot performance issues (also ome preliminary testing on Alfresco Enterprise 5.0.x versions has not found any incompatibilities).
+This add-on has been designed to work only in Alfresco Enterprise 4.2.x or above using JDK7 and Tomcat7. This provides the Alfresco Admin a set of tools to help troubleshoot performance issues (also some preliminary testing on Alfresco Enterprise 5.0.x versions has not found any incompatibilities).
 It probably won't work on Alfresco Community Edition due the lack of JMX connectivity. From the client side has been tested to work with current versions of Firefox, IE and Chrome only. 
 
 ## Download
