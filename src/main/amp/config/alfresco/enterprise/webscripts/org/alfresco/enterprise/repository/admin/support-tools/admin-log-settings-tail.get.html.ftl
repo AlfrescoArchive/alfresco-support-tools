@@ -17,11 +17,14 @@
 				  thisdatetimen=headline?eval
 				  thisdatetime=thisdatetimen?number_to_datetime>						  
 				<#switch errlevel>
+				<#case "FATAL">
+				<tr bgcolor="LightCoral">
+				<#break>
 				<#case "ERROR">
 				<tr bgcolor="LightPink">
 				<#break>
 				<#case "TRACE">
-				<tr bgcolor="Grey">
+				<tr bgcolor="lightGrey">
 				<#break>
 				<#case "WARN">
 				<tr bgcolor="LightYellow">

@@ -10,13 +10,13 @@
         <form id="addPackageForm" action="${url.service}" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
         <input name="packagename" size="35" placeholder="package.name"></input>
           <select name="priority">
-            <option value="OFF">UNSET</option>
-            <option value="TRACE">TRACE</option>
-			<option value="DEBUG">DEBUG</option>
-            <option value="INFO">INFO</option>
-            <option value="WARN">WARN</option>
-            <option value="ERROR">ERROR</option>
-            <option value="FATAL">FATAL</option>
+            <option style="background-color: Grey"        value="OFF">UNSET</option>
+            <option style="background-color: lightGrey"   value="TRACE">TRACE</option>
+			<option style="background-color: LightGreen"  value="DEBUG">DEBUG</option>
+            <option                                       value="INFO">INFO</option>
+            <option style="background-color: LightYellow" value="WARN">WARN</option>
+            <option style="background-color: LightPink"   value="ERROR">ERROR</option>
+            <option style="background-color: LightCoral"  value="FATAL">FATAL</option>
           </select>
           <input type="submit" value="add"/>
           &nbsp&nbsp&nbsp&nbsp <@button id="Tail Alfresco Log" label="Tail Alfresco Log" onclick= "Admin.showDialog('${url.serviceContext}/enterprise/admin/admin-log-settings-tail?context=Alfresco');"/>
@@ -39,14 +39,21 @@
               <tr>
                 <td><input readonly size="80" name="packagename" value="${bean.name?replace("log4j:logger=","")}" /></td>
                 <td>
-                <select style="display:block;" name="priority" id="${bean.name?replace("log4j:logger=","")}-select" onchange="this.form.submit();">
-                  <option value="OFF" <#if bean.attributes["priority"].value=="OFF">selected</#if>>UNSET</option>
-                  <option value="TRACE" <#if bean.attributes["priority"].value=="TRACE">selected</#if>>TRACE</option>
-                  <option value="DEBUG" <#if bean.attributes["priority"].value=="DEBUG">selected</#if>>DEBUG</option>
-                  <option value="INFO" <#if bean.attributes["priority"].value=="INFO">selected</#if>>INFO</option>
-                  <option value="WARN" <#if bean.attributes["priority"].value=="WARN">selected</#if>>WARN</option>
-                  <option value="ERROR" <#if bean.attributes["priority"].value=="ERROR">selected</#if>>ERROR</option>
-                  <option value="FATAL" <#if bean.attributes["priority"].value=="FATAL">selected</#if>>FATAL</option>
+                <select style="display:block;background-color: <#switch  bean.attributes["priority"].value>
+				<#case "FATAL">LightCoral<#break>
+				<#case "ERROR">LightPink<#break>
+				<#case "TRACE">lightGrey<#break>
+				<#case "WARN">LightYellow<#break>
+				<#case "DEBUG">LightGreen<#break>
+				<#case "OFF">Grey<#break>				
+				<#default>white</#switch>" name="priority" id="${bean.name?replace("log4j:logger=","")}-select" onchange="this.form.submit();">
+                  <option style="background-color: Grey"        value="OFF" <#if bean.attributes["priority"].value=="OFF">selected</#if>>UNSET</option>
+                  <option style="background-color: lightGrey"   value="TRACE" <#if bean.attributes["priority"].value=="TRACE">selected</#if>>TRACE</option>
+                  <option style="background-color: LightGreen"  value="DEBUG" <#if bean.attributes["priority"].value=="DEBUG">selected</#if>>DEBUG</option>
+                  <option                                       value="INFO" <#if bean.attributes["priority"].value=="INFO">selected</#if>>INFO</option>
+                  <option style="background-color: LightYellow" value="WARN" <#if bean.attributes["priority"].value=="WARN">selected</#if>>WARN</option>
+                  <option style="background-color: LightPink"   value="ERROR" <#if bean.attributes["priority"].value=="ERROR">selected</#if>>ERROR</option>
+                  <option style="background-color: LightCoral"  value="FATAL" <#if bean.attributes["priority"].value=="FATAL">selected</#if>>FATAL</option>
                 </select>
                 </td>
               </tr>
