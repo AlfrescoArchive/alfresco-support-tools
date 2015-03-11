@@ -18,7 +18,10 @@ function main()
             "java.lang:type=OperatingSystem",
             ["ProcessCpuLoad"]
          ); 
-   
+   model.Threading = Admin.getMBeanAttributes(
+            "java.lang:type=Threading",
+            ["ThreadCount"]
+         );
    //convert bytes into MB 
    model.memoryAttributes["FreeMemory"].value = Math.round(model.memoryAttributes["FreeMemory"].value / 1024 / 1024) ;
    model.memoryAttributes["MaxMemory"].value = Math.round(model.memoryAttributes["MaxMemory"].value / 1024 / 1024) ;

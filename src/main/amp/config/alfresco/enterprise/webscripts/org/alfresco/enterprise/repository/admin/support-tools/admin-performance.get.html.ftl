@@ -55,6 +55,32 @@
          <span class="value" id="CPULoad">${operatingSystem["ProcessCpuLoad"].value?html}</span>
       </div>
    </div>
+   
+      
+   <div class="column-full">
+      <@section label=msg("performance.Threads") />
+      
+      <canvas id="Threads" width="720" height="200"></canvas>
+   </div>
+
+   <div class="column-left">
+      <@options id="threadsTimescale" name="threadsTimescale" label=msg("performance.chart-timescale") value="11">
+         <@option label=msg("performance.chart-timescale.1min") value="1" />
+         <@option label=msg("performance.chart-timescale.10mins") value="11" />
+         <@option label=msg("performance.chart-timescale.60mins") value="61" />
+         <@option label=msg("performance.chart-timescale.12hrs") value="721" />
+         <@option label=msg("performance.chart-timescale.24hrs") value="1441" />
+         <@option label=msg("performance.chart-timescale.48hrs") value="2881" />
+         <@option label=msg("performance.chart-timescale.7days") value="10081" />
+      </@options>
+   </div>
+   <div class="column-right">
+      <div class="control field">
+         <div style="background: #c3fcc3; width:0.6em; height:0.7em; border:1px solid #39BB39; display:inline-block;"></div> <span class="label">${msg("performance.Threads")?html}</span><span class="label">:</span>
+         <span class="value" id="ThreadCount">${Threading["ThreadCount"].value?html}</span>
+      </div>
+   </div>
+   
 
    <script type="text/javascript" src="${url.context}/scripts/smoothie.js"></script>
    <script type="text/javascript">//<![CDATA[
@@ -66,9 +92,11 @@ Admin.addEventListener(window, 'load', function() {
    Admin.addEventListener(el("memTimescale"), "change", function() {
          AdminSP.changeChartTimescale(this, el("memory"), memGraph);
       }); 
-
    Admin.addEventListener(el("cpuTimescale"), "change", function() {
          AdminSP.changeChartTimescale(this, el("CPU"), cpuGraph);
+      }); 
+   Admin.addEventListener(el("threadsTimescale"), "change", function() {
+         AdminSP.changeChartTimescale(this, el("Threads"), threadGraph);
       }); 
 });
 
@@ -84,6 +112,7 @@ var AdminSP = AdminSP || {};
       var memChartLineComtd = new TimeSeries();
       var memChartLineUsed = new TimeSeries();
       var cpuChartLinePcent = new TimeSeries();
+	  var threadChartLine = new TimeSeries();
       
       setInterval(function(){
       
@@ -97,10 +126,12 @@ var AdminSP = AdminSP || {};
    
                   el("UsedMemory").innerHTML = json.TotalMemory - json.FreeMemory;
                   el("TotalMemory").innerHTML = json.TotalMemory;   
-                  el("CPULoad").innerHTML = json.CPULoad;  
+                  el("CPULoad").innerHTML = json.CPULoad;
+				  el("ThreadCount").innerHTML = json.ThreadCount;
                   memChartLineComtd.append (new Date().getTime() , json.TotalMemory);
                   memChartLineUsed.append (new Date().getTime() , json.TotalMemory - json.FreeMemory);
                   cpuChartLinePcent.append (new Date().getTime() , json.CPULoad);
+				  threadChartLine.append (new Date().getTime() , json.ThreadCount);
                }
             }
          });     
@@ -114,6 +145,10 @@ var AdminSP = AdminSP || {};
       cpuGraph = new SmoothieChart({labels:{precision:0, fillStyle: '#333333'}, sieve: true, timestampFormatter:SmoothieChart.timeFormatter, millisPerPixel:1000, maxValue:100, minValue:0, grid: { strokeStyle: '#cccccc', fillStyle: '#ffffff', lineWidth: 1, millisPerLine: 60000, verticalSections: 10 }});
       cpuGraph.addTimeSeries(cpuChartLinePcent, {strokeStyle: 'rgb(249, 159, 56)', fillStyle: 'rgba(249, 159, 56, 0.3)', lineWidth: 2});
       cpuGraph.streamTo(document.getElementById("CPU"), 1000);
+	  
+	  threadGraph = new SmoothieChart({labels:{precision:0, fillStyle: '#333333'}, sieve: true, timestampFormatter:SmoothieChart.timeFormatter, millisPerPixel:1000, maxValue:Math.round( ${Threading["ThreadCount"].value?html}* 0.015 )*100 , minValue:0, grid: { strokeStyle: '#cccccc', fillStyle: '#ffffff', lineWidth: 1, millisPerLine: 60000, verticalSections: 10 }});
+      threadGraph.addTimeSeries(threadChartLine, {strokeStyle: 'rgb(56, 187, 56)', fillStyle: 'rgba(56, 187, 56, 0.3)', lineWidth: 2});
+      threadGraph.streamTo(document.getElementById("Threads"), 1000); 
    }   
    
    AdminSP.changeChartTimescale = function changeChartTimescale(element, canvas, chart)
