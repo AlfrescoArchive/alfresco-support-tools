@@ -76,6 +76,10 @@
    </div>
    <div class="column-right">
       <div class="control field">
+	     <span class="label">${msg("performance.Threads.PeakThreadCount")?html}</span><span class="label">:</span>  
+		 <span class="value" id="PeakThreadCount">${Threading["PeakThreadCount"].value?html}</span>
+	  </div>
+      <div class="control field">
          <div style="background: #c3fcc3; width:0.6em; height:0.7em; border:1px solid #39BB39; display:inline-block;"></div> <span class="label">${msg("performance.Threads")?html}</span><span class="label">:</span>
          <span class="value" id="ThreadCount">${Threading["ThreadCount"].value?html}</span>
       </div>
@@ -128,6 +132,7 @@ var AdminSP = AdminSP || {};
                   el("TotalMemory").innerHTML = json.TotalMemory;   
                   el("CPULoad").innerHTML = json.CPULoad;
 				  el("ThreadCount").innerHTML = json.ThreadCount;
+				  el("PeakThreadCount").innerHTML = json.PeakThreadCount;
                   memChartLineComtd.append (new Date().getTime() , json.TotalMemory);
                   memChartLineUsed.append (new Date().getTime() , json.TotalMemory - json.FreeMemory);
                   cpuChartLinePcent.append (new Date().getTime() , json.CPULoad);
@@ -146,7 +151,7 @@ var AdminSP = AdminSP || {};
       cpuGraph.addTimeSeries(cpuChartLinePcent, {strokeStyle: 'rgb(249, 159, 56)', fillStyle: 'rgba(249, 159, 56, 0.3)', lineWidth: 2});
       cpuGraph.streamTo(document.getElementById("CPU"), 1000);
 	  
-	  threadGraph = new SmoothieChart({labels:{precision:0, fillStyle: '#333333'}, sieve: true, timestampFormatter:SmoothieChart.timeFormatter, millisPerPixel:1000, maxValue:Math.round( ${Threading["ThreadCount"].value?html}* 0.015 )*100 , minValue:0, grid: { strokeStyle: '#cccccc', fillStyle: '#ffffff', lineWidth: 1, millisPerLine: 60000, verticalSections: 10 }});
+	  threadGraph = new SmoothieChart({labels:{precision:0, fillStyle: '#333333'}, sieve: true, timestampFormatter:SmoothieChart.timeFormatter, millisPerPixel:1000, maxValue:${Threading["PeakThreadCount"].value?c} , minValue:0, grid: { strokeStyle: '#cccccc', fillStyle: '#ffffff', lineWidth: 1, millisPerLine: 60000, verticalSections: 10 }});
       threadGraph.addTimeSeries(threadChartLine, {strokeStyle: 'rgb(56, 187, 56)', fillStyle: 'rgba(56, 187, 56, 0.3)', lineWidth: 2});
       threadGraph.streamTo(document.getElementById("Threads"), 1000); 
    }   

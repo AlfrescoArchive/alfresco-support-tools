@@ -3,5 +3,6 @@
  "MaxMemory" : ${memoryAttributes["MaxMemory"].value?c},
  "TotalMemory" : ${memoryAttributes["TotalMemory"].value?c},
  "CPULoad" : ${operatingSystem["ProcessCpuLoad"].value?c},
- "ThreadCount" : ${Threading["ThreadCount"].value?c}
+ "ThreadCount" : ${Threading["ThreadCount"].value?c},
+ "PeakThreadCount": ${Threading["PeakThreadCount"].value?c}
 }

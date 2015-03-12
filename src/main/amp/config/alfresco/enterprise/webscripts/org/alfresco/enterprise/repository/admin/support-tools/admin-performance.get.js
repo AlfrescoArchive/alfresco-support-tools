@@ -20,7 +20,7 @@ function main()
          ); 
    model.Threading = Admin.getMBeanAttributes(
             "java.lang:type=Threading",
-            ["ThreadCount"]
+            ["ThreadCount","PeakThreadCount"]
          );
    //convert bytes into MB 
    model.memoryAttributes["FreeMemory"].value = Math.round(model.memoryAttributes["FreeMemory"].value / 1024 / 1024) ;
