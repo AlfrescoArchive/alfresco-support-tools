@@ -8,6 +8,8 @@ It does not work on Alfresco Community Edition due the lack of JMX connectivity.
 
 It's possible to download all  source / binary releases from the Alfresco Artifact repository [here](https://artifacts.alfresco.com/nexus/content/groups/public/org/alfresco/support/support-tools/).
 
+Also the latest snapshop build can be downloaded from [http://github.com/Alfresco/alfresco-support-tools/releases] (http://github.com/Alfresco/alfresco-support-tools/releases)
+
 ### Usage with Maven
 
 If you are using Maven you can retrieve the AMP by:
