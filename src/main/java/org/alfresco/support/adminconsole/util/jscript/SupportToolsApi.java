@@ -40,11 +40,12 @@ public class SupportToolsApi extends BaseScopableProcessorExtension {
 	public String getPersistedMbeanValue(String className, String propertyName) {
 		try {
 			Map<String,Serializable> map = (Map<String, Serializable>) attributeService.getAttribute(PROPERTY_BACKED_BEANS,className);
-			if (map instanceof Map<?,?>) {
+			if ((map instanceof Map<?,?>) && (map.get(propertyName)!=null)) {
 				return map.get(propertyName).toString();
+				
 			}
 		} catch (Exception e) {
-			logger.error("Error processing Persisted Values", e);
+			logger.warn("Error processing Persisted Values of " + className + " Property: " + propertyName , e);
 		}
 		
 		return null;

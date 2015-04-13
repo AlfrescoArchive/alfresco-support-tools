@@ -7,3 +7,5 @@ alf_data_dev
 alfresco.log.*
 RemoteSystemsTempFiles
 .metadata
+mvnbuild.cmd
+/bin/
