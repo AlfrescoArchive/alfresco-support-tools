@@ -30,7 +30,7 @@
       <br/>
 	  
       <table>
-        <tr><th> <b>MBean</b> </th> <th> <b>Revert</b> </th></tr>
+        <tr><th> <b>MBean</b> </th> <th> <b>${msg("jmx-settings.revert.label")?html}</b> </th></tr>
         <#list matchingBeans as bean>
            <form id="${bean.name}" accept-charset="utf-8">
               <tr>
@@ -59,7 +59,7 @@
 					</div>
           		</td>			
 				<td>
-					<input onclick="this.form.action='/alfresco/s/enterprise/admin/admin-jmx-settings';this.form.method='POST';this.form.submit();" type="button" value="Revert"/>
+					<input onclick="this.form.action='/alfresco/s/enterprise/admin/admin-jmx-settings';this.form.method='POST';this.form.submit();" type="button" value="${msg("jmx-settings.revert.label")?html}"/>
 				</td>
               </tr>
             </form>

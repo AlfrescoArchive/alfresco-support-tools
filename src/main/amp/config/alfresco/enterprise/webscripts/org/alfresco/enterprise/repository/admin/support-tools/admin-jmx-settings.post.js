@@ -1,5 +1,11 @@
 <import resource="classpath:alfresco/enterprise/webscripts/org/alfresco/enterprise/repository/admin/admin-common.lib.js">
 
+/**
+ * Repository Admin Console
+ *
+ * JMX Settings POST Method
+ */
+ 
 function main(){
 
     Admin.initModel("Alfresco:Name=*", "", "admin-jmx-settings");

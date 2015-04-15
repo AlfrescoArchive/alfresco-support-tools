@@ -5,6 +5,7 @@
  *
  * JMX Settings GET Method
  */
+ 
 function main() {
     var configurationBeans = jmx.queryMBeans("Alfresco:Category=*,Type=Configuration,*");
 
