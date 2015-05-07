@@ -11,7 +11,7 @@
   <@section label=msg("jmx-settings.logging") />
 
   <div class="column-full">
-      <!-- form id="addPackage" action="/alfresco/s/enterprise/admin/admin-jmx-settings" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+      <!-- > form id="addPackage" action="/alfresco/s/enterprise/admin/admin-jmx-settings" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
         <div>Swow Beans:
           <select name="typeOfBeans" >
             <option value="matchingBeans">Show only the Mbeans that have values set via JMX</option>
@@ -20,20 +20,20 @@
           <input onclick="this.form.submit();" type="button" value="Select"/>
 		
 		</div>
-	  </form 
-	  -->
+	  </form < -->
   
 
       <#if statusMessage?? && statusMessage != "">
            <div id="statusmessage" class="message ${messageStatus!""}">${.now?string("HH:mm:ss")} - ${statusMessage?html!""} <a href="#" onclick="this.parentElement.style.display='none';" title="${msg("admin-console.close")}">[X]</a></div>
       </#if>
-      <br/>
+      
 	  
       <table>
         <tr><th> <b>MBean</b> </th> <th> <b>${msg("jmx-settings.revert.label")?html}</b> </th></tr>
         <#list matchingBeans as bean>
-           <form id="${bean.name}" accept-charset="utf-8">
+           
               <tr>
+			    
                 <td><input readonly size="80" name="beanName" value="${bean.name}" /> <p>
                    <div id="table1" class="datagrid">
 				   <table >
@@ -59,15 +59,16 @@
 					</div>
           		</td>			
 				<td>
-					<input onclick="this.form.action='/alfresco/s/enterprise/admin/admin-jmx-settings';this.form.method='POST';this.form.submit();" type="button" value="${msg("jmx-settings.revert.label")?html}"/>
-				</td>
+					<input onclick="this.form.action='/alfresco/s/enterprise/admin/admin-jmx-settings';this.form.method='POST';this.form.submit();" type="button" value='${msg("jmx-settings.revert.label")?html}'/>
+					
+				</td>		
               </tr>
-            </form>
+            
         </#list>
       </table>
-	  
+	 </div>
   </div>
-</div>
+
 
 </@page>
 
