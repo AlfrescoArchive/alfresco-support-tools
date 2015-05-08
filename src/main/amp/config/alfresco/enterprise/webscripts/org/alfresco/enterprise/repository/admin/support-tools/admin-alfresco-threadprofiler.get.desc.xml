@@ -1,0 +1,10 @@
+<webscript>
+   <shortname>Thread Profiler</shortname>
+   <description><![CDATA[Generate Thread Profiler.]]></description>
+   <url>/enterprise/admin/admin-alfresco-threadprofiler</url>
+   <family>AdminConsole</family>
+   <format default="html">argument</format>
+   <authentication>admin</authentication>
+   <lifecycle>internal</lifecycle>
+   <transaction allow="readwrite">required</transaction>
+</webscript>

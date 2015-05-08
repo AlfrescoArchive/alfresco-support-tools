@@ -16,14 +16,11 @@
 
       #viewer
       {
-         
 		 border: 1px solid #444;
 		 
          padding: 0em;
 		 z-index: -1;
-		// position: absolute;
-
-         
+		// position: absolute;        
       }
      
 	  
@@ -54,8 +51,7 @@
 			border-width:1px;
 			border-color:#707070;
 			font:10px Georgia, serif;
-			padding:5px; 
-						
+			padding:5px; 						
 		}	
 		
 		th
@@ -93,7 +89,6 @@
 			font:10px "Lucida Console", serif;
 			padding:0px;
 			border-radius:8px;
-
 		}
 		 
 		th
@@ -153,8 +148,7 @@
 		}
 		 
 		td
-		{   
-            
+		{
 			border-style:solid;
 			border-width:1px;
 			border-color:#707070;
@@ -218,7 +212,6 @@
 				text-align: right;
 				top: 0;
 			}
-
 
 			.fileUpload {
 				background-color: #F0AD4E;
@@ -630,7 +623,6 @@ document.getElementById('files').addEventListener('change', handleFileSelect, fa
 		return str.replace(new RegExp(find, 'g'), replace);
 	}
 })();
-
 
 //]]></script>
 

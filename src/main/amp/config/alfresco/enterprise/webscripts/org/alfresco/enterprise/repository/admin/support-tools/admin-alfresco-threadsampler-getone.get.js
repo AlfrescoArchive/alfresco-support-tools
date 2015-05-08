@@ -65,13 +65,16 @@ function main()
    var runtimeBean = Admin.getMBean("java.lang:type=Runtime");
   
    var now = new Date();
-   var mydate = now.getFullYear() + "-" + format(now.getMonth()+1) + "-" + format(now.getDate()) + " " + format(now.getHours()) + ":" + format(now.getMinutes()) + ":" +format(now.getSeconds());
-	
-   tDump += '   "date"      : "' + mydate + '",\n';
-   tDump += '   "VmName"    : "' + runtimeBean.attributes.VmName.value + '",\n';
-   tDump += '   "VmVersion" : "' + runtimeBean.attributes.VmVersion.value + '",\n';
-
+   var VmName = runtimeBean.attributes.VmName.value ;
+   var VmVersion = runtimeBean.attributes.VmVersion.value ;
    var threadBean = Admin.getMBean("java.lang:type=Threading");
+   var mydate = now.getFullYear() + "-" + format(now.getMonth()+1) + "-" + format(now.getDate()) + " " + format(now.getHours()) + ":" + format(now.getMinutes()) + ":" +format(now.getSeconds());
+
+   tDump += '   "date"      : "' + mydate + '",\n';
+   tDump += '   "timestamp" : "' + now.getTime() + '",\n';
+   tDump += '   "VmName"    : "' + VmName + '",\n';
+   tDump += '   "VmVersion" : "' + VmVersion + '",\n';
+   
    var threads = threadBean.operations.dumpAllThreads(true, true);
    
    tDump += '   "threads"   : [ \n';
@@ -82,14 +85,17 @@ function main()
       var thread = threads[n];
       var keys = threads[n].dataKeys;
       tDump += '            {\n';
-	  tDump += '            "threadNumber"       : "' + n + '",\n';
-      tDump += '            "threadName"         : "' + thread.dataMap["threadName"] + '",\n';
-	  tDump += '            "threadId"           : "' + thread.dataMap["threadId"] + '",\n';
-	  tDump += '            "blockedCount"       : "' + thread.dataMap["blockedCount"] + '",\n';
-	  tDump += '            "waitedCount"        : "' + thread.dataMap["waitedCount"] + '",\n';
-	  tDump += '            "threadState"        : "' + thread.dataMap["threadState"] + '",\n';
-	  tDump += '            "stackTrace"         : "' + stackTrace(thread.dataMap["stackTrace"], thread.dataMap["lockedMonitors"], thread) + '",\n';	  
-	  tDump += '            "lockedSynchronizers": "' ;
+	  tDump += '            "threadNumber"        : "' + n + '",\n';
+      tDump += '            "threadName"          : "' + thread.dataMap["threadName"] + '",\n';
+	  tDump += '            "threadId"            : "' + thread.dataMap["threadId"] + '",\n';
+	  tDump += '            "blockedCount"        : "' + thread.dataMap["blockedCount"] + '",\n';
+	  tDump += '            "waitedCount"         : "' + thread.dataMap["waitedCount"] + '",\n';
+	  tDump += '            "threadState"         : "' + thread.dataMap["threadState"] + '",\n';
+	  tDump += '            "getThreadCpuTime"    : "' + threadBean.operations.getThreadCpuTime_(["long"], thread.dataMap["threadId"] ) + '",\n';
+	  tDump += '            "getThreadUserTime"   : "' + threadBean.operations.getThreadUserTime_(["long"], thread.dataMap["threadId"] ) + '",\n';
+	  tDump += '            "ThreadAllocatedBytes": "' + threadBean.operations.getThreadAllocatedBytes_(["long"], thread.dataMap["threadId"] ) + '",\n';
+	  tDump += '            "stackTrace"          : "' + stackTrace(thread.dataMap["stackTrace"], thread.dataMap["lockedMonitors"], thread) + '",\n';	  
+	  tDump += '            "lockedSynchronizers" : "' ;
     
       var lockedSynchronizers=thread.dataMap["lockedSynchronizers"];
       if (lockedSynchronizers.length>0)	
