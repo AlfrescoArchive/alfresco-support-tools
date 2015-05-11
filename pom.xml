@@ -3,7 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.alfresco.support</groupId>
 	<artifactId>support-tools</artifactId>
+<<<<<<< HEAD
 	<version>1.7.2-SNAPSHOT</version>
+=======
+	<version>1.7-SNAPSHOT</version>
+>>>>>>> parent of 06d6316... [maven-release-plugin] prepare release support-tools-1.7.1
 	<name>AdminConsoleSupportTools repo AMP project</name>
 	<packaging>amp</packaging>
 	<description>Repo AMP that adds extra features to the Support Tools section of 4.2 Alfresco Admin Console</description>
@@ -43,20 +47,17 @@
 			<organizationUrl>http://www.alfresco.com</organizationUrl>
 			<timezone>0</timezone>
 		</contributor>
-		<contributor>
-			<name>Mike Farman</name>
-			<email>mike.farman@alfresco.com</email>
-			<organization>Alfresco Software</organization>
-			<organizationUrl>http://www.alfresco.com</organizationUrl>
-			<timezone>0</timezone>
-		</contributor>
 	</contributors>
 
 	<scm>
 		<connection>scm:git:git@github.com:Alfresco/alfresco-support-tools</connection>
 		<url>scm:git:git@github.com:Alfresco/alfresco-support-tools</url>
 		<developerConnection>scm:git:git@github.com:Alfresco/alfresco-support-tools</developerConnection>
+<<<<<<< HEAD
     <tag>1.7.1</tag>
+=======
+    <tag>1.6.1</tag>
+>>>>>>> parent of 06d6316... [maven-release-plugin] prepare release support-tools-1.7.1
   </scm>
 
 	<parent>
@@ -205,7 +206,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore />
+										<ignore></ignore>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
