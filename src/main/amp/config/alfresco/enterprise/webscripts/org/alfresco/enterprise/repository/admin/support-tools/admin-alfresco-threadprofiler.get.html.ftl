@@ -8,12 +8,6 @@
          white-space: pre-wrap;
 		 overflow: scroll;
       }
-      .highlight
-      {
-         border-color:#FF0000;
-		 border-width:1px;
-      }
-
       #viewer
       {
 		 border: 1px solid #444;
@@ -22,13 +16,11 @@
 		 z-index: -1;
 		// position: absolute;        
       }
-     
-	  .startsampler
+	  .startprofiler
       {
          background-color: #006E00 !important;
       }
-	  
-	  .stopsampler
+	  .stopprofiler
       {
          background-color: #6E0000 !important;
       }
@@ -41,7 +33,6 @@
 			-ms-user-select: none;
 			user-select: none;
 	  }
-	  
         table.threadlistclass
 		{
 			border-collapse:separate;
@@ -51,7 +42,6 @@
 			font: 10px "Arial",sans-serif;
 			padding:5px; 						
 		}	
-		
 		th
 		{   
 		    white-space: nowrap;
@@ -62,13 +52,16 @@
 			text-align:left;
 			vertical-align:top;
 		}
-		 
 		tr
 		{
 			color:#000000;
 			font-weight:normal;
 		}		 
-		 
+		  .highlight
+		  {
+			 outline: thin solid #FF2222;
+			 border-width:1px;
+		  }		 
 		td
 		{   white-space: nowrap;
 		    height: 18px;
@@ -79,7 +72,6 @@
 			vertical-align:top;
 		}
 		table.statuslist
-
 		{
 			border-collapse:separate;
 			border-style:solid;
@@ -89,7 +81,6 @@
 			padding:0px;
 			border-radius:8px;
 		}
-		 
 		th
 		{
 			color:#FFFFFF;
@@ -99,13 +90,11 @@
 			text-align:left;
 			vertical-align:top;
 		}
-		 
 		tr
 		{
 			color:#000000;
 			font-weight:normal;
 		}
-		 
 		td
 		{   white-space: nowrap;
 		    height: 18px;
@@ -117,9 +106,7 @@
 			text-align:left;
 			vertical-align:top;
 		}
-		
 		table.stacktrace
-
 		{
 			border-collapse:collapse;
 			border-style:solid;
@@ -129,7 +116,6 @@
 			padding:0px;
 			border-radius:8px;
 		}
-		 
 		th
 		{
 			color:#FFFFFF;
@@ -139,13 +125,11 @@
 			text-align:left;
 			vertical-align:top;
 		}
-		 
 		tr
 		{
 			color:#000000;
 			font-weight:normal;
 		}
-		 
 		td
 		{
 			border-style:solid;
@@ -175,25 +159,22 @@
 			text-align: center;
 			transition: width 0.6s ease 0s;
 			width: 0;
-		}
-	
-		   
+		}		   
    </style>
    
    <div class="column-full">
 		 <p class="intro">${msg("alfresco-threadprofiler.intro-text")?html}</p>
 
-		<@button id="startsampler" class="startsampler" label=msg("alfresco-threadprofiler.start") onclick='AdminTD.getDump(); window.myInterval=setInterval("AdminTD.getDump();",4000); AdminTD.addClass( el("startsampler"), "hidden"); AdminTD.removeClass( el("stopsampler"), "hidden"); '/>
+		<@button id="startprofiler" class="startprofiler" label=msg("alfresco-threadprofiler.start") onclick='AdminTD.getDump(); window.myInterval=setInterval("AdminTD.getDump();",5000); AdminTD.addClass( el("startprofiler"), "hidden"); AdminTD.removeClass( el("stopprofiler"), "hidden"); '/>
 			
-		<@button id="stopsampler" class="stopsampler hidden" label=msg("alfresco-threadprofiler.stop") onclick=' clearInterval(window.myInterval) ; AdminTD.addClass( el("stopsampler"), "hidden"); AdminTD.removeClass( el("startsampler"), "hidden"); ' />
+		<@button id="stopprofiler" class="stopprofiler hidden" label=msg("alfresco-threadprofiler.stop") onclick=' clearInterval(window.myInterval) ; AdminTD.addClass( el("stopprofiler"), "hidden"); AdminTD.removeClass( el("startprofiler"), "hidden"); ' />
 		
 		<@section label="" />
 				
 		<div id="mainviewer" class="threaddumpviewer" style="width: 120em ; height: 60em ; float:left ; overflow:hidden ; display:block; ">
 			<div id="viewer" class="threaddumpviewer" style="width: 62em  ; height: 60em ; overflow:scroll ; float:left "> 
-				 
 
-						<table id="threadList" class="threadlistclass" style="width:100%" boder=1px>
+					<table id="threadList" class="threadlistclass" style="width:100%" boder=1px>
 						<tr>  				 
 						  <th> tid<input type="radio" name="sortingOption" value="tid" checked onclick='AdminTD.drawTable();' ></th>
 						  <th> Name<input type="radio" name="sortingOption" value="name" onclick='AdminTD.drawTable();' ></th>
@@ -201,19 +182,11 @@
 						  <th> Memory<input type="radio" name="sortingOption" value="memory" onclick='AdminTD.drawTable();'></th>
 						  <th style="width:15em">%CPU Time<input type="radio" name="sortingOption" value="cputime" onclick='AdminTD.drawTable();'></th>
 						</tr>
-					  </table>
-				 
-				 <!-- div id="viewerStatusList" style="width:40em ; float:left ; overflow-x:scroll ; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;" >
-						<table id="statusList" class="threadlistclass" style="width:100%" boder=1px>
-						<tr>
-						  <th  colspan="100%" >Statuslist</th>
-						</tr>
-					  </table>
-				 </div -->			 
+					</table>				 
 			 </div>
 			 
-			 <div id="viewerstackTrace" style=" margin-left:10px height: 100%; overflow-x:auto">
-					<table id="stackTrace" class="stacktrace" style="width:100%" boder=1px a="-1" b="-1">
+			 <div id="viewerstackTrace" style=" margin-left:10px ; height: 100% ; overflow-x:auto ">
+					<table id="stackTrace" class="stacktrace" style="width:100% ; " boder=1px a="-1" b="-1">
 						<tr>
 						  <th>Stacktrace</th>
 						</tr>
@@ -261,11 +234,11 @@ Admin.addEventListener(window, 'load', function ()
 var currentDump = [];
 var previousDump = [];
 var currentStackTrace=0;
+var highlightedRow=0;
 var AdminTD = AdminTD || {};
 
 (function ()
 {
-	
 	AdminTD.drawTable = function drawTable()
 	{
 		/* Clean and refresh the table*/
@@ -290,8 +263,6 @@ var AdminTD = AdminTD || {};
 				}
 		});
 		
-
-
 		currentDump.forEach( function (ThisThread)
 		{		
 				tempTable.rows[ThisThread.threadNumber] = new Array();
@@ -316,8 +287,6 @@ var AdminTD = AdminTD || {};
 			}
 		}
 
-		
-		
 		switch (thisSortingOption.value)
 		{
 			case "tid":
@@ -343,7 +312,7 @@ var AdminTD = AdminTD || {};
 		
 		for ( i=1 ; i < tableThreadList.rows.length ; i++ )
 		{
-				tableThreadList.rows[i].onclick= ( function ( ) { AdminTD.drawStackTable( parseInt (this.cells[0].innerHTML) );	}	)
+				tableThreadList.rows[i].onclick= ( function ( ) { AdminTD.drawStackTable( parseInt (this.cells[0].innerHTML) ); AdminTD.highlightRow( this.rowIndex , parseInt (this.cells[0].innerHTML  ) );	}	)
 				switch (tableThreadList.rows[i].cells[2].innerHTML)
 				{
 					case "R":
@@ -361,21 +330,19 @@ var AdminTD = AdminTD || {};
 					default:
 						tableThreadList.rows[i].cells[2].bgColor = "gray";
 				}
-		CPUPercentage= tableThreadList.rows[i].cells[4].innerHTML ;
-				
-		tableThreadList.rows[i].cells[4].innerHTML='<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="'+CPUPercentage+'" aria-valuemin="0" aria-valuemax="100" style="width:'+CPUPercentage+'%">'+CPUPercentage+'%</div></div>'
-				
+				if ( tableThreadList.rows[i].cells[0].innerHTML == currentStackTrace )
+				{
+								AdminTD.highlightRow(i,currentStackTrace);
+				}				
+				CPUPercentage= tableThreadList.rows[i].cells[4].innerHTML ;
+				tableThreadList.rows[i].cells[4].innerHTML='<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="'+CPUPercentage+'" aria-valuemin="0" aria-valuemax="100" style="width:'+CPUPercentage+'%">'+CPUPercentage+'%</div></div>'
 		}
-				
-		//AdminTD.highlightRow(currentStackTrace);
-		AdminTD.drawStackTable(currentStackTrace);
-		
-		
+		AdminTD.drawStackTable(currentStackTrace);	
 	}
 
 	AdminTD.drawStackTable = function drawStackTable(t)
 	{
-		/* Clean and refresh the table*/
+		/* Clean and refresh the stacktrace table */
 		var tableStack = el("stackTrace");
 		var stackviewcell = tableStack.rows[1].cells[0];
 		var temptext = "<p> <b> Thread taken on: " + currentDump.date + " </b></p> <p> ";
@@ -383,29 +350,27 @@ var AdminTD = AdminTD || {};
 		temptext += "<b>  state=" + currentDump[t].threadState + " </b><p>";
 		temptext += "<p>" + AdminTD.replaceAll("\n", "<p>", currentDump[t].stackTrace);
 		stackviewcell.innerHTML = temptext;
-        currentStackTrace=t;
 	}
 
-	AdminTD.highlightRow = function highlightRow(a)
+	AdminTD.highlightRow = function highlightRow(thisRowIndex , thisThreadID)
 	{
-		/* Clean and refresh the table*/
-		var threadList = el("threadList");
-		
-		var tableStack = el("stackTrace");
-		
-		if (tableStack.a)
+		/* Highlight selected row and removes the old one  */
+		var threadList = el("threadList");		
+		if (highlightedRow>0)
 		{
-			AdminTD.removeClass(threadList.rows[a], "highlight");
+			AdminTD.removeClass(threadList.rows[highlightedRow], "highlight");
 		}
-		if (a>0)
+		if (thisThreadID>0)
 		{
-			AdminTD.addClass(threadList.rows[a], "highlight");
+			AdminTD.addClass(threadList.rows[thisRowIndex], "highlight");
 		}
-		tableStack.a = a;
+		currentStackTrace = thisThreadID;
+		highlightedRow = thisRowIndex ;
 	}
 
 	AdminTD.getDump = function getDump()
 	{
+		/* request a new JSON threadump  */
 		Admin.request(
 		{
 			url : "${url.serviceContext}/enterprise/admin/admin-alfresco-threadsampler-getone",

@@ -22,8 +22,7 @@
 		 z-index: -1;
 		// position: absolute;        
       }
-     
-	  
+  
 	  .startsampler
       {
          background-color: #006E00 !important;
@@ -265,7 +264,7 @@
 				 </div>			 
 			 </div>
 			 
-			 <div id="viewerstackTrace" style=" margin-left:10px height: 100%; overflow-x:auto">
+			 <div id="viewerstackTrace" style=" margin-left:10px ; height: 100% ; overflow-x:auto">
 
 						<table id="stackTrace" class="stacktrace" style="width:100%" boder=1px a="-1" b="-1">
 						<tr>
