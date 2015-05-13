@@ -16,13 +16,13 @@ If you are using Maven you can retrieve the AMP by:
 
    1. Adding `https://artifacts.alfresco.com/nexus/content/groups/public/` repository to your pom.xml 
    2. Check what's the latest version available by [searching the repository](https://artifacts.alfresco.com/nexus/index.html#nexus-search;gav~org.alfresco.support~support-tools~~amp~)
-   3. Adding the following dependency to your POM: (latest version: 1.6 at the time of this writing)
+   3. Adding the following dependency to your POM: (latest version: 1.7.1 at the time of this writing)
 
 	```xml
 <dependency>
   <groupId>org.alfresco.support</groupId>
   <artifactId>support-tools</artifactId>
-  <version>1.6</version>
+  <version>1.7.1</version>
   <type>amp</type>
 </dependency>
 	```
@@ -101,7 +101,7 @@ This [wiki page](http://github.com/Alfresco/alfresco-support-tools/wiki) explain
  1.5. Change on the folder Structure and added pom.xml to be Maven compliant.
 
  1.6. New Utility: ThreadSampler, an integrated thread analyser tool that allows to generate and save thread execution reports.
-
+ 1.7  New Utility: ThreadPofiler, integrated thread tool performance monitor 
  
  
 
