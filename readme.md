@@ -16,13 +16,13 @@ If you are using Maven you can retrieve the AMP by:
 
    1. Adding `https://artifacts.alfresco.com/nexus/content/groups/public/` repository to your pom.xml 
    2. Check what's the latest version available by [searching the repository](https://artifacts.alfresco.com/nexus/index.html#nexus-search;gav~org.alfresco.support~support-tools~~amp~)
-   3. Adding the following dependency to your POM: (latest version: 1.7.2 at the time of this writing)
+   3. Adding the following dependency to your POM: (latest version: 1.8 at the time of this writing)
 
 	```xml
 <dependency>
   <groupId>org.alfresco.support</groupId>
   <artifactId>support-tools</artifactId>
-  <version>1.7.2</version>
+  <version>1.8</version>
   <type>amp</type>
 </dependency>
 	```

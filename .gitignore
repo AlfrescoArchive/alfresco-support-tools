@@ -9,3 +9,4 @@ RemoteSystemsTempFiles
 .metadata
 mvnbuild.cmd
 /bin/
+release.properties
