@@ -163,7 +163,7 @@
    </style>
    
    <div class="column-full">
-		 <p class="intro">${msg("alfresco-threadprofiler.intro-text")?html}</p>
+		 <p class="intro">${msg("alfresco-threadprofiler.intro")?html}</p>
 
 		<@button id="startprofiler" class="startprofiler" label=msg("alfresco-threadprofiler.start") onclick='AdminTD.getDump(); window.myInterval=setInterval("AdminTD.getDump();",5000); AdminTD.addClass( el("startprofiler"), "hidden"); AdminTD.removeClass( el("stopprofiler"), "hidden"); '/>
 			
@@ -286,23 +286,28 @@ var AdminTD = AdminTD || {};
 				break;
 			}
 		}
-
+		var customSort = function(a,b) 
+		{
+			if (a.a === b.a) return a.customSortKey > b.customSortKey ? 1 : -1; /*NEW CODE*/
+			if (a.a > b.a) return 1;
+			return -1;
+		}
 		switch (thisSortingOption.value)
 		{
 			case "tid":
-				tempTable.rows.sort(function(a,b) { return  ( parseFloat(a["cells"][0]) > parseFloat(b["cells"][0])) ;}  );
+				tempTable.rows.sort( function(a,b) { return ( parseInt(a.cells[0]) - parseInt(b.cells[0]) ) } ) ;									
 				break;
 			case "name":
-				tempTable.rows.sort(function(a,b) { return  a["cells"][1] > b["cells"][1] } );
+				tempTable.rows.sort(function(a,b) { return  ( (a.cells[1]) > (b.cells[1]) ? 1:-1 ) } );
 				break;
 			case "status":
-				tempTable.rows.sort(function(a,b) { return a["cells"][2] > b["cells"][2] } );
+				tempTable.rows.sort(function(a,b) { return  ( (a.cells[2]) > (b.cells[2]) ? 1:-1 ) } );
 				break;
 			case "memory":
-				tempTable.rows.sort(function(a,b) { return  parseFloat(a["cells"][3]) < parseFloat(b["cells"][3]) } );
+				tempTable.rows.sort(function(a,b) { return  ( parseFloat(b.cells[3]) - parseFloat(a.cells[3])) } );
 				break;
 			case "cputime":
-				tempTable.rows.sort(function(a,b) { return  parseFloat(a["cells"][4]) < parseFloat(b["cells"][4]) } );
+				tempTable.rows.sort(function(a,b) { return  ( parseFloat(b.cells[4]) - parseFloat(a.cells[4]))  } );
 				break;
 		}		
 		for ( i=0 ; i < tempTable.rows.length ; i++ )
@@ -345,11 +350,14 @@ var AdminTD = AdminTD || {};
 		/* Clean and refresh the stacktrace table */
 		var tableStack = el("stackTrace");
 		var stackviewcell = tableStack.rows[1].cells[0];
-		var temptext = "<p> <b> Thread taken on: " + currentDump.date + " </b></p> <p> ";
-		temptext += "<b>" + currentDump[t].threadName + "  tid=" + currentDump[t].threadId + " </b><p> ";
-		temptext += "<b>  state=" + currentDump[t].threadState + " </b><p>";
-		temptext += "<p>" + AdminTD.replaceAll("\n", "<p>", currentDump[t].stackTrace);
-		stackviewcell.innerHTML = temptext;
+		if ( t > 0 )
+		{
+			var temptext = "<p> <b> Thread taken on: " + currentDump.date + " </b></p> <p> ";
+			temptext += "<b>" + currentDump[t].threadName + "  tid=" + currentDump[t].threadId + " </b><p> ";
+			temptext += "<b>  state=" + currentDump[t].threadState + " </b><p>";
+			temptext += "<p>" + AdminTD.replaceAll("\n", "<p>", currentDump[t].stackTrace);
+			stackviewcell.innerHTML = temptext;
+		}		
 	}
 
 	AdminTD.highlightRow = function highlightRow(thisRowIndex , thisThreadID)
