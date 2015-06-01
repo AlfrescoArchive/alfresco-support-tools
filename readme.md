@@ -61,7 +61,7 @@ There are two options to install the tools using the AMP: the standard and the h
 	
 	* click on _"Refresh Web Scripts"_
 	
-  **Important Note:** There are 2 scripts that would not work with the Hot-Deploy: The Tail-Log tool won't cache log entries until the next restart, but the rest of the webscripts will work and the JMX settings needs a custom class to inspect the current persisted values on the DB.
+  **Important Note:** There are 2 scripts that would not work with the Hot-Deploy: The Tail-Log tool won't cache log entries until the next restart and the JMX settings needs a custom class to inspect the current persisted values on the DB.  The rest of the webscripts will work ok.
 
 
 ## Usage
