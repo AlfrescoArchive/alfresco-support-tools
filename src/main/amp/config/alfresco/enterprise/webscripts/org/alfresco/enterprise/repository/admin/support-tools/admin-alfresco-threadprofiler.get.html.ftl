@@ -11,7 +11,6 @@
       #viewer
       {
 		 border: 1px solid #444;
-		 
          padding: 0em;
 		 z-index: -1;
 		// position: absolute;        
@@ -166,53 +165,35 @@
 		 <p class="intro">${msg("alfresco-threadprofiler.intro")?html}</p>
 
 		<@button id="startprofiler" class="startprofiler" label=msg("alfresco-threadprofiler.start") onclick='AdminTD.getDump(); window.myInterval=setInterval("AdminTD.getDump();",5000); AdminTD.addClass( el("startprofiler"), "hidden"); AdminTD.removeClass( el("stopprofiler"), "hidden"); '/>
-			
+
 		<@button id="stopprofiler" class="stopprofiler hidden" label=msg("alfresco-threadprofiler.stop") onclick=' clearInterval(window.myInterval) ; AdminTD.addClass( el("stopprofiler"), "hidden"); AdminTD.removeClass( el("startprofiler"), "hidden"); ' />
 		
 		<@section label="" />
-				
+
 		<div id="mainviewer" class="threaddumpviewer" style="width: 120em ; height: 60em ; float:left ; overflow:hidden ; display:block; ">
 			<div id="viewer" class="threaddumpviewer" style="width: 62em  ; height: 60em ; overflow:scroll ; float:left "> 
-
 					<table id="threadList" class="threadlistclass" style="width:100%" boder=1px>
 						<tr>  				 
-						  <th> tid<input type="radio" name="sortingOption" value="tid" checked onclick='AdminTD.drawTable();' ></th>
-						  <th> Name<input type="radio" name="sortingOption" value="name" onclick='AdminTD.drawTable();' ></th>
-						  <th> Status<input type="radio" name="sortingOption" value="status" onclick='AdminTD.drawTable();' ></th>
-						  <th> Memory<input type="radio" name="sortingOption" value="memory" onclick='AdminTD.drawTable();'></th>
-						  <th style="width:15em">%CPU Time<input type="radio" name="sortingOption" value="cputime" onclick='AdminTD.drawTable();'></th>
+						  <th><input type="radio" name="sortingOption" value="tid"    onclick='AdminTD.drawTable();' checked> T-id  </th>
+						  <th><input type="radio" name="sortingOption" value="name"   onclick='AdminTD.drawTable();'        > Name  </th>
+						  <th><input type="radio" name="sortingOption" value="status" onclick='AdminTD.drawTable();'        > Status</th>
+						  <th><input type="radio" name="sortingOption" value="memory" onclick='AdminTD.drawTable();'        > Memory</th>
+						  <th style="width:15em"><input type="radio" name="sortingOption" value="cputime" onclick='AdminTD.drawTable();'>%CPU Time</th>
 						</tr>
 					</table>				 
 			 </div>
 			 
 			 <div id="viewerstackTrace" style=" margin-left:10px ; height: 100% ; overflow-x:auto ">
 					<table id="stackTrace" class="stacktrace" style="width:100% ; " boder=1px a="-1" b="-1">
-						<tr>
-						  <th>Stacktrace</th>
-						</tr>
-						<tr>
-						    <td></td>
-						</tr>
-						<tr>
-						    <td></td>
-						<tr>
-							<td> Legend : </td>
-						</tr>
-						<tr>
-							<td bgColor="lime" > R : Running</td>
-						</tr>
-						<tr>
-							<td bgColor="DarkOliveGreen" > W : Waiting</td>
-						</tr>
-						<tr>
-							<td bgColor="silver" > T : Timed Waiting</td>
-						</tr>
-						<tr>
-							<td bgColor="darkred" > B : Blocked</td>
-						</tr>
-						<tr>
-							<td bgColor="white" > &lt : Same stacktrace as previous ThreadDump</td>
-						</tr>				
+						<tr><th>Stacktrace</th></tr>
+						<tr><td></td></tr>
+						<tr><td></td></tr>
+						<tr><td> Legend : </td></tr>
+						<tr><td bgColor="lime" > R : Running</td></tr>
+						<tr><td bgColor="DarkOliveGreen" > W : Waiting</td></tr>
+						<tr><td bgColor="silver" > T : Timed Waiting</td></tr>
+						<tr><td bgColor="darkred" > B : Blocked</td></tr>
+						<tr><td bgColor="white" > &lt : Same stacktrace as previous ThreadDump</td></tr>				
 				  </table>
 			</div>  
 	   </div>
@@ -228,7 +209,7 @@ Admin.addEventListener(window, 'load', function ()
 );
 
 /**
- * Thread Dump Component
+ * Thread Profiler Component
  */
 
 var currentDump = [];
@@ -279,9 +260,7 @@ var AdminTD = AdminTD || {};
 			if (sortingOptionsArray[i].checked) 
 			{
 				// do whatever you want with the checked radio       
-				
 	            thisSortingOption = sortingOptionsArray [i] ;
-				
 				// only one radio can be logically checked, don't check the rest
 				break;
 			}
