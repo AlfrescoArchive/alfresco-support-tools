@@ -101,8 +101,10 @@ This [wiki page](http://github.com/Alfresco/alfresco-support-tools/wiki) explain
  1.5. Change on the folder Structure and added pom.xml to be Maven compliant.
 
  1.6. New Utility: ThreadSampler, an integrated thread analyser tool that allows to generate and save thread execution reports.
- 1.7  New Utility: ThreadPofiler, integrated thread tool performance monitor 
  
+ 1.7  New Utility: ThreadPofiler, integrated thread tool performance monitor.
+ 
+ 1.8  Bugfixing and code improvements.
  
 
 
