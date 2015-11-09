@@ -22,7 +22,7 @@ if (mbean == null){
 			message[0] = message[0] + "log4j.appender.jmxlogger2.ObjectName=jmxlogger:type=LogEmitterShare<br>";
 			message[0] = message[0] + "log4j.appender.jmxlogger2.threshold=debug<br>";
 			message[0] = message[0] + "log4j.appender.jmxlogger2.serverSelection=platform<br><br>";
-			message[0] = message[0] + "<br><br>And copy the file [tomcat]/webapps/alfresco/WEB-INF/lib/jmxlogger-log4j-0.1.0-AlfrescoPatched.jar to [tomcat]/webapps/share/WEB-INF/lib/ <br><br>";
+			message[0] = message[0] + "<br><br>And copy the file [tomcat]/webapps/alfresco/WEB-INF/lib/log4j-0.1.0-AlfrescoPatched.jar to [tomcat]/webapps/share/WEB-INF/lib/ <br><br>";
 			break;
 		case "Alfresco":
 			message[0] = "MESSAGE:<hr><br><b>The Alfresco log4j jmx Appender is not configured to listen on bootstrap (this is not enabled by default). </b><br><br><br>";
