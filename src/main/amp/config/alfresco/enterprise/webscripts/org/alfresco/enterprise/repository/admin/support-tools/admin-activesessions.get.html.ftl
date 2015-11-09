@@ -52,6 +52,7 @@
             </thead>
             <tbody>
                <#list listUserNamesNonExpired as user>
+               <#if user??>
                <tr>
                   <td><a href="${url.serviceContext}/api/people/${user.properties.userName?html}">${user.properties.userName?html}</a></td>
                   <td>${(user.properties.firstName!"")?html}</td>
@@ -59,6 +60,7 @@
                   <td><#if user.properties.email??><a href="mailto:${user.properties.email?html}">${user.properties.email?html}</a></#if></td>
                   <td><a href="#" onclick="AdminAS.updateUsers('${user.properties.userName?html}');">${msg("activesessions.users.logoff")?html}</a>
                </tr>
+               </#if>
                </#list>
             </tbody>
          </table>
