@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.alfresco.support</groupId>
 	<artifactId>support-tools</artifactId>
-	<version>1.8-SNAPSHOT</version>
+	<version>1.9</version>
 	<name>AdminConsoleSupportTools repo AMP project</name>
 	<packaging>amp</packaging>
 	<description>Repo AMP that adds extra features to the Support Tools section of 4.2 Alfresco Admin Console</description>
@@ -63,7 +63,7 @@
 		<connection>scm:git:git@github.com:Alfresco/alfresco-support-tools</connection>
 		<url>scm:git:git@github.com:Alfresco/alfresco-support-tools</url>
 		<developerConnection>scm:git:git@github.com:Alfresco/alfresco-support-tools</developerConnection>
-    <tag>1.7.1</tag>
+    <tag>support-tools-1.9</tag>
   </scm>
 
 	<parent>
