@@ -14,7 +14,7 @@ if (mbean == null){
 	switch(model.context){
 		case "Share":
 			message[0] = "MESSAGE:<hr><b>The Share log4j jmx Appender is not configured to listen (this is not enabled by default). </b><br><br><br>";
-			message[0] = message[0] + " To configure this you have to add to the file [tomcat]/webapps/share/WEB-INF/clasees/log4j.properties this configuration:<br><br>";
+			message[0] = message[0] + " To configure this you have to add to the file [tomcat]/webapps/share/WEB-INF/classes/log4j.properties this configuration:<br><br>";
 			message[0] = message[0] + "log4j.rootLogger=error, Console, File, jmxlogger2<br>";
 			message[0] = message[0] + "log4j.appender.jmxlogger2=jmxlogger.integration.log4j.JmxLogAppender<br>";
 			message[0] = message[0] + "log4j.appender.jmxlogger2.layout=org.apache.log4j.PatternLayout<br>";
