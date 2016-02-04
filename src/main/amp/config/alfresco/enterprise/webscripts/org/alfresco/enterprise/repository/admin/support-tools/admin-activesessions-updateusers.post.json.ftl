@@ -3,7 +3,7 @@
    "users": [
    <#list listUserNamesNonExpired as user>
       {
-         "username" : "${user.properties.userName?html}",
+         "username" : "${(user.properties.userName?html}!!' ')",
          "firstName" : "${(user.properties.firstName?html)!' '}",
          "lastName" : "${(user.properties.lastName?html)!' '}",
          "email" : "${(user.properties.email?html)!' '}"
