@@ -17,6 +17,10 @@
       <div class="control field">
          <div style="background: #7fff7f; width:0.6em; height:0.7em; border:1px solid #00ff00; display:inline-block;"></div> <span class="label">${msg("activesessions.database.active")?html}</span><span class="label">:</span>
          <span class="value" id="NumActive">${ConnectionPool["NumActive"].value?html}</span>
+	  </div>
+	  <div class="control field">
+		 <div style="background: #ffcc00; width:0.6em; height:0.7em; border:1px solid #ff9900; display:inline-block;"></div> <span class="label">${msg("activesessions.database.idle")?html}</span><span class="label">:</span>
+		 <span class="value" id="NumIdle">${ConnectionPool["NumIdle"].value?html}</span>
       </div>
    </div>
    
@@ -52,7 +56,6 @@
             </thead>
             <tbody>
                <#list listUserNamesNonExpired as user>
-               <#if user??>
                <tr>
                   <td><a href="${url.serviceContext}/api/people/${user.properties.userName?html}">${user.properties.userName?html}</a></td>
                   <td>${(user.properties.firstName!"")?html}</td>
@@ -60,7 +63,6 @@
                   <td><#if user.properties.email??><a href="mailto:${user.properties.email?html}">${user.properties.email?html}</a></#if></td>
                   <td><a href="#" onclick="AdminAS.updateUsers('${user.properties.userName?html}');">${msg("activesessions.users.logoff")?html}</a>
                </tr>
-               </#if>
                </#list>
             </tbody>
          </table>
@@ -86,6 +88,7 @@ var AdminAS = AdminAS || {};
    AdminAS.createCharts = function createCharts()
    {
       var dbChartLine = new TimeSeries();
+	  var dbChartLineIdle = new TimeSeries();
       var userChartLine = new TimeSeries();
       
       setInterval(function(){
@@ -99,9 +102,11 @@ var AdminAS = AdminAS || {};
                   var json = res.responseJSON;
    
                   el("NumActive").innerHTML = json.NumActive;
+				  el("NumIdle").innerHTML = json.NumIdle;
                   el("UserCountNonExpired").innerHTML = json.UserCountNonExpired;   
                   el("TicketCountNonExpired").innerHTML = json.TicketCountNonExpired;  
                   dbChartLine.append ( new Date().getTime() , json.NumActive );
+				  dbChartLineIdle.append ( new Date().getTime() , json.NumIdle );
                   userChartLine.append ( new Date().getTime() , json.UserCountNonExpired );
                }
             }
@@ -110,6 +115,7 @@ var AdminAS = AdminAS || {};
       
       var dbGraph = new SmoothieChart({labels:{precision:0, fillStyle: '#333333'}, timestampFormatter:SmoothieChart.timeFormatter, millisPerPixel:1000, maxValue:${ConnectionPool["MaxActive"].value}, minValue:0, grid: { strokeStyle: '#cccccc', fillStyle: '#ffffff', lineWidth: 1, millisPerLine: 60000, verticalSections: 10 }});
       dbGraph.addTimeSeries(dbChartLine, {strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(0, 255, 0, 0.3)', lineWidth: 2});
+	  dbGraph.addTimeSeries(dbChartLineIdle, {strokeStyle: 'rgb(255, 153, 0)', fillStyle: 'rgba(255, 204, 0, 0.3)', lineWidth: 2});
       dbGraph.streamTo(document.getElementById("database"), 2000);
       
       var userGraph = new SmoothieChart({labels:{precision:0, fillStyle: '#333333'}, timestampFormatter:SmoothieChart.timeFormatter, millisPerPixel:1000, minValue:0, maxValueScale:2 , grid: { strokeStyle: '#cccccc', fillStyle: '#ffffff', lineWidth: 1, millisPerLine: 60000, verticalSections: 10 }});

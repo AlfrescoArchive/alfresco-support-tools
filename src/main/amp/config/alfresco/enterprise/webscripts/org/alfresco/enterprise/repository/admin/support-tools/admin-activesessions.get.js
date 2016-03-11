@@ -14,7 +14,7 @@ function main()
    
    model.ConnectionPool = Admin.getMBeanAttributes(
             "Alfresco:Name=ConnectionPool",
-            ["DriverClassName","Url","NumActive","MaxActive"]
+            ["DriverClassName","Url","NumActive","MaxActive","NumIdle"]
          );
    
    var matchingBeans = jmx.queryMBeans("Alfresco:Name=RepoServerMgmt");

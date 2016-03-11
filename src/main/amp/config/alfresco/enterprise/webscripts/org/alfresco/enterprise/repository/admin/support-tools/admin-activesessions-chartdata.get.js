@@ -14,7 +14,7 @@ function main()
    
    model.ConnectionPool = Admin.getMBeanAttributes(
             "Alfresco:Name=ConnectionPool",
-            ["NumActive"]
+            ["NumActive","NumIdle"]
          );
 
    model.tools = Admin.getConsoleTools("admin-activesessions");

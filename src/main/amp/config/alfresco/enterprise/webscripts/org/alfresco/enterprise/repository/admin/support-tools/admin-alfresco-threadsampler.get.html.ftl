@@ -230,17 +230,27 @@
    <div class="column-full">
 		 <p class="intro">${msg("alfresco-threadsampler.intro-text")?html}</p>
 
-		<@button id="startsampler" class="startsampler" label=msg("alfresco-threadsampler.start") onclick='AdminTD.getDump(); window.myInterval=setInterval("AdminTD.getDump();",4000); AdminTD.addClass( el("startsampler"), "hidden"); AdminTD.removeClass( el("stopsampler"), "hidden"); ' />
+		<@button id="startsampler" class="startsampler" label=msg("alfresco-threadsampler.start") onclick='AdminTD.getDump(); window.myInterval=setInterval("AdminTD.getDump();", el("samplerate").value ); AdminTD.addClass( el("startsampler"), "hidden"); AdminTD.removeClass( el("stopsampler"), "hidden"); ' />
 			
 		<@button id="stopsampler" class="stopsampler hidden" label=msg("alfresco-threadsampler.stop") onclick=' clearInterval(window.myInterval) ; AdminTD.addClass( el("stopsampler"), "hidden"); AdminTD.removeClass( el("startsampler"), "hidden"); ' />
 		
 		<@button class="save" label=msg("alfresco-threadsampler.saveall") onclick="AdminTD.saveTextAsFile('all');"/>
-				  
+        
 		<div class="fileUpload">
             <span>Upload All</span>
 			<input type="file" id="files" class="upload" name="file" />
 		</div>	
-		
+
+        <@options id="samplerate" name="samplerate" label=msg("alfresco-threadsampler.samplerate") value="4000">
+          <@option label=msg("alfresco-threadsampler.chart-timescale.1s") value="1000" />
+          <@option label=msg("alfresco-threadsampler.chart-timescale.2s") value="2000" />
+          <@option label=msg("alfresco-threadsampler.chart-timescale.4s") value="4000" />
+          <@option label=msg("alfresco-threadsampler.chart-timescale.10s") value="10000" />
+          <@option label=msg("alfresco-threadsampler.chart-timescale.30s") value="30000" />
+          <@option label=msg("alfresco-threadsampler.chart-timescale.60s") value="60000" />
+          <@option label=msg("alfresco-threadsampler.chart-timescale.600s") value="600000" />
+        </@options>
+ 		
 		<div id="progress_bar"><div class="percent">0%</div></div>
 
 		<@section label="" />
@@ -318,6 +328,32 @@ var AdminTD = AdminTD || {};
 
 var reader;
 var progress = document.querySelector('.percent');
+
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+	var tableStack = el("stackTrace");
+	var tableStatus = el("statusList");
+	var cursora=tableStack.a;
+	var cursorb=tableStack.b;
+    if ( evt.keyCode == 37 && ( tableStack.a>0 )) {   // LEFT
+        cursora-- ;
+		AdminTD.drawStackTable( tableStatus.rows[cursorb].cells[cursora].thread, tableStatus.rows[cursorb].cells[cursora].stack , cursora , cursorb );
+    }
+	if ( evt.keyCode == 38 && ( tableStack.b>0 ) ) {   // UP
+        cursorb--;
+		AdminTD.drawStackTable( tableStatus.rows[cursorb].cells[cursora].thread, tableStatus.rows[cursorb].cells[cursora].stack , cursora , cursorb );
+    }
+	if ( evt.keyCode == 39 ) {   // RIGHT
+        cursora++;
+		AdminTD.drawStackTable( tableStatus.rows[cursorb].cells[cursora].thread, tableStatus.rows[cursorb].cells[cursora].stack , cursora , cursorb );
+    }
+	if ( evt.keyCode == 40 ) {   // DOWN
+        cursorb++;
+		AdminTD.drawStackTable( tableStatus.rows[cursorb].cells[cursora].thread, tableStatus.rows[cursorb].cells[cursora].stack , cursora , cursorb );
+    }
+	
+	
+};
 
 function abortRead()
 {
