@@ -1430,6 +1430,30 @@ var AdminTD = AdminTD || {};
 var reader;
 var progress = document.querySelector('.percent');
 
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+	var tableStack = el("stackTrace");
+	var tableStatus = el("statusList");
+	var cursora=tableStack.a;
+	var cursorb=tableStack.b;
+    if ( evt.keyCode == 37 && ( tableStack.a>0 )) {   // LEFT
+        cursora-- ;
+		AdminTD.drawStackTable( tableStatus.rows[cursorb].cells[cursora].thread, tableStatus.rows[cursorb].cells[cursora].stack , cursora , cursorb );
+    }
+	if ( evt.keyCode == 38 && ( tableStack.b>0 ) ) {   // UP
+        cursorb--;
+		AdminTD.drawStackTable( tableStatus.rows[cursorb].cells[cursora].thread, tableStatus.rows[cursorb].cells[cursora].stack , cursora , cursorb );
+    }
+	if ( evt.keyCode == 39 ) {   // RIGHT
+        cursora++;
+		AdminTD.drawStackTable( tableStatus.rows[cursorb].cells[cursora].thread, tableStatus.rows[cursorb].cells[cursora].stack , cursora , cursorb );
+    }
+	if ( evt.keyCode == 40 ) {   // DOWN
+        cursorb++;
+		AdminTD.drawStackTable( tableStatus.rows[cursorb].cells[cursora].thread, tableStatus.rows[cursorb].cells[cursora].stack , cursora , cursorb );
+    }
+};
+
 function abortRead()
 {
 	reader.abort();
