@@ -105,6 +105,10 @@ This [wiki page](http://github.com/Alfresco/alfresco-support-tools/wiki) explain
  1.7  New Utility: ThreadPofiler, integrated thread tool performance monitor.
  
  1.8  Bugfixing and code improvements.
+
+ 1.9  Bugfixing and compatiblility testing for Alfresco 5.1
+ 
+ 1.10  Bugfixing and Enhancements on Active Sessions and Thread Sampler
  
 
 
