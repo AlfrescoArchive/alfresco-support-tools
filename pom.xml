@@ -6,7 +6,7 @@
 	<version>1.11-SNAPSHOT</version>
 	<name>AdminConsoleSupportTools repo AMP project</name>
 	<packaging>amp</packaging>
-	<description>Repo AMP that adds extra features to the Support Tools section of 4.2 Alfresco Admin Console</description>
+	<description>Repo AMP that adds extra features to the Support Tools section of 4.2.x and 5.x Alfresco Repo Admin Console</description>
 	<inceptionYear>2013</inceptionYear>
 	<licenses>
 		<license>
