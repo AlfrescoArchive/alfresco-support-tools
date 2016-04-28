@@ -42,9 +42,9 @@ There are two options to install the tools using the AMP: the standard and the h
     		java -jar ./bin/alfresco-mmt.jar install ./amps/ ./tomcat/webapps/alfresco.war -force -verbose
   
   *	Clean out the currently deployed web application by removing :
-  	* tomcat/webapps/alfresco/*
-  	* tomcat/work/*
-  	* tomcat/temp/*
+  	* the folder "tomcat/webapps/alfresco/" and all its content
+  	* all the files and subfolders in tomcat/work/*
+  	* all the files and subfolders in tomcat/temp/*
 
 ### 2. Hot-Deploy
 
