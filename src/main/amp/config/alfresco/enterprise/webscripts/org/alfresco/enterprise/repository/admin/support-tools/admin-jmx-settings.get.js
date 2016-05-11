@@ -27,6 +27,7 @@ function main() {
 			{
                 var reg = /\${(.+)}/;
                 var processedChain=null;
+              try {  
                 if (model.globalProperties.attributes[attribute] != null) {
 	                processedChain = model.globalProperties.attributes[attribute].value;
 	                var testarray = processedChain.match(reg);
@@ -43,7 +44,8 @@ function main() {
                 if (processedChain == null) {
                 	processedChain="<span style='color: red'>**** NOT SET ****</span>";
                 }
-                
+                }
+                catch (err) {}
                 if (!pushed) {
                 	matchingBeans.push (configurationBeans[i]) ; //print(attribute + " " + processedChain + " " + configurationBeans[i].attributes[attribute].value);
                 	pushed=true;
