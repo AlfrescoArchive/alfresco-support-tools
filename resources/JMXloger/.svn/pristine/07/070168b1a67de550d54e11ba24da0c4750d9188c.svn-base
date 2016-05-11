@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<project name="jmxlogger" default="build-all" basedir=".">
+    <property file="build.properties"/>
+    <path id="build.path">
+	<fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+	</fileset>
+    </path>
+
+    <target name="init" description="Initialize project, create directories">
+    	<echo>Creating dirctories...</echo>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <target name="clean" description="Cleans project.  Delete created directories.">
+    	<echo>Cleaning directories...</echo>
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+        <delete dir="${docs.dir}"/>
+    </target>
+
+    <target name="compile-core" description="Compiles project without log4j dependencies.">
+    	<echo>Compiling project core...</echo>
+    	<mkdir dir="${build.classes.dir}"/>
+        <javac
+            destdir="${build.classes.dir}"
+            source="1.5"
+            target="1.5"
+            deprecation="false"
+            optimize="false"
+            failonerror="true"
+            >
+            <src path="${src.dir}"/>
+    	    <classpath refid="build.path"/>
+            <exclude  name="jmxlogger/integration/log4j/**"/>
+    	</javac>
+    </target>
+
+    <target name="compile-all" description="Compiles project with log4j dependencies.">
+    	<echo>Compiling project for log4j dependecies ...</echo>
+    	<mkdir dir="${build.classes.dir}"/>
+        <javac
+            destdir="${build.classes.dir}"
+            source="1.5"
+            target="1.5"
+            deprecation="false"
+            optimize="false"
+            failonerror="true"
+            >
+            <src path="${src.dir}"/>
+    	    <classpath refid="build.path"/>
+    	</javac>
+    </target>
+
+
+    <target name="gen-docs" description="Generates the java docs for project.">
+    	<echo>Generating documentation for project...</echo>
+	<delete dir="${docs.dir}" failonerror="false"/>
+	<mkdir dir="${docs.dir}"/>
+
+	<javadoc sourcepath="${src.dir}" destdir="${docs.dir}" windowtitle="JmxLogger ${version}"
+	    source="1.5" access="package" author="true" version="true" use="true"
+	    defaultexcludes="true"
+	    header='&lt;a href="http://code.google.com/p/jmx-logger/" target="_top"&gt;sJmxLogger&lt;/a&gt;'>
+	    <arg value="-breakiterator"/>
+	    <arg value="-J-Xmx128m"/>
+	    <arg value="-J-XX:MaxPermSize=128m"/>
+	    <doctitle><![CDATA[<h1>JmxLogger - A JMX Log Broadcaster</h1>]]></doctitle>
+	    <bottom><![CDATA[<i>Copyright &copy; 2009 <a href="http://code.google.com/p/jmx-logger/" target="_top">JmxLogger</a>.</i>]]></bottom>
+	    <classpath refid="build.path"/>
+	    <packageset dir="${src.dir}">
+	        <include name="jmxlogger/**"/>
+	    </packageset>
+	</javadoc>
+    </target>
+
+<target name="junit-test" depends="compile-all" description="Run JUnit tests for project.">
+	<echo>Running JUnit test for project...</echo>
+	<mkdir dir="${test.classes.dir}"/>
+	<mkdir dir="${test.rpt.dir}"/>
+
+	<javac destdir="${test.classes.dir}" source="1.5" target="1.5"
+		deprecation="false" optimize="false" failonerror="true">
+		<src path="${test.src.dir}"/>
+		<classpath refid="build.path"/>
+		<classpath location="${build.classes.dir}"/>
+	</javac>
+
+	<copy todir="${test.classes.dir}" preservelastmodified="true">
+		<fileset dir="${test.src.dir}">
+			<include name="**/*.class"/>
+		</fileset>
+	</copy>
+
+	<junit printsummary="yes" haltonfailure="yes" haltonerror="yes">
+		<jvmarg line="-Djava.awt.headless=true -Xmx128m -XX:MaxPermSize=128m"/>
+		<classpath refid="build.path"/>
+		<classpath location="${build.classes.dir}"/>
+		<classpath location="${test.classes.dir}"/>
+		<formatter type="xml" usefile="true"/>
+		<batchtest fork="yes" todir="${test.rpt.dir}">
+			<fileset dir="${test.classes.dir}" includes="**/test/*Test.class"/>
+		</batchtest>
+	</junit>
+</target>
+
+
+	<target name="build-core-jar" depends="clean,init,compile-core" description="Builds jar without log4j dependencies.">
+		<jar jarfile="${dist.dir}/${project-name}-${version}.jar">
+			<fileset dir="${build.classes.dir}">
+				<include name="jmxlogger/**"/>
+			</fileset>
+			<manifest>
+				<attribute name="Implementation-Title" value="${project-name}"/>
+				<attribute name="Implementation-Version" value="${version}"/>
+				<attribute name="JmxLogger-Version" value="${version}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="build-log4j-jar" depends="clean,init,compile-all" description="Builds jar with log4j dependencies.">
+		<jar jarfile="${dist.dir}/${project-name}-log4j-${version}.jar">
+			<fileset dir="${build.classes.dir}">
+				<include name="jmxlogger/**"/>
+			</fileset>
+			<manifest>
+				<attribute name="Implementation-Title" value="${project-name}"/>
+				<attribute name="Implementation-Version" value="${version}"/>
+				<attribute name="JmxLogger-Version" value="${version}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="build-jars" depends="build-core-jar,build-log4j-jar"/> 
+ 
+
+	<target name="project-dist" depends="clean,build-jars,gen-docs" description="Create zip distribution of the entire project.">
+		<delete dir="${project-dist}"/>
+		<mkdir  dir="${project-dist}"/>
+
+		<zip zipfile="${project-dist}/${project-name}-${version}.zip" basedir=".">
+			<exclude name="${build.dir}/**"/>
+			<exclude name="${test.rpt.dir}/**"/>
+			<exclude name="${project-dist}/**"/>
+		</zip>
+
+	</target>
+
+	<target name="build-all" description="Runs all build tasks." depends="clean,build-jars,junit-test,gen-docs,project-dist"/>
+
+</project>

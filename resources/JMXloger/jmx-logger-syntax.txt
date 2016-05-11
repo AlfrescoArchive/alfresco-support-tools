@@ -1,0 +1,16 @@
+#java.util.logging format
+handlers = simplius.jmx.logger.JmxLoggingHander
+jmx.logger.Handler.level=ALL|SEVERE|INFO|FINE|etc
+jmx.logger.Handler.filter=/pattern/|filterObject
+jmx.logger.Handler.formatter = java.util.logging.XMLFormatter|any standard formatter
+jmx.logger.Handler.objectName=JMX Object Name
+jmx.logger.Handler.server=platform|domain name of server
+
+#log4j format
+log4j.appender.JMXLOGGER=simplius.jmx.logger.JmxLoggingAppender
+log4j.appender.JMXLOGGER.level=INFO|DEBUG|ERROR|etc
+log4j.appender.JMXLOGGER.filter=/$pattern/
+log4j.appender.JMXLOGGER.layout=org.apache.log4j.PatternLayout
+log4j.appender.JMXLOGGER.layout.ConversionPattern=Pattern String
+log4j.appender.JMXLOGGER.objectName=JMX Object Name
+log4j.appender.JMXLOGGER.server=platform|domain name of server

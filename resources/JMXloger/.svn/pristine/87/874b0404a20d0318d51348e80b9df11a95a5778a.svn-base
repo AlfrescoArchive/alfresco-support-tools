@@ -1,0 +1,17 @@
+# *********************** Java Util Logging ************************
+handlers=jmxlogger.integration.logutil.JmxLogHandler, java.util.logging.ConsoleHandler
+
+# Default global logging level.
+.level=INFO
+
+# Console log handler
+java.util.logging.ConsoleHandler.level = INFO
+java.util.logging.ConsoleHandler.formatter = java.util.logging.SimpleFormatter
+
+# jmx log handler
+jmxlogger.Handler.level=INFO
+jmxlogger.Handler.filter=
+jmxlogger.Handler.logPattern=
+jmxlogger.Handler.formatter=java.util.logging.SimpleFormatter
+jmxlogger.Handler.objectName=jmxlogger.util.logging:type=JmxLogHandler
+jmxlogger.Handler.server=platform

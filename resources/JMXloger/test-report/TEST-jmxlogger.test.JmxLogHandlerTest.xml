@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="SOLERDOMAIN" name="jmxlogger.test.JmxLogHandlerTest" tests="1" time="0.141" timestamp="2013-08-19T15:48:12">
+  <properties>
+    <property name="java.vendor" value="Sun Microsystems Inc." />
+    <property name="lib.dir" value="lib" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="eclipse.pdebuild.templates" value="/E:/eclipse/plugins/org.eclipse.pde.build_3.8.2.v20121114-140810/templates/" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="docs.dir" value="docs" />
+    <property name="os.name" value="Windows Server 2008 R2" />
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jre6\lib\resources.jar;C:\Program Files\Java\jre6\lib\rt.jar;C:\Program Files\Java\jre6\lib\sunrsasign.jar;C:\Program Files\Java\jre6\lib\jsse.jar;C:\Program Files\Java\jre6\lib\jce.jar;C:\Program Files\Java\jre6\lib\charsets.jar;C:\Program Files\Java\jre6\lib\modules\jdk.boot.jar;C:\Program Files\Java\jre6\classes" />
+    <property name="sun.desktop" value="windows" />
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="ant.home" value="E:\eclipse\plugins\org.apache.ant_1.8.3.v201301120609" />
+    <property name="java.runtime.version" value="1.6.0_37-b06" />
+    <property name="user.name" value="administrator" />
+    <property name="test.classes.dir" value="build/test-classes" />
+    <property name="build.dir" value="build" />
+    <property name="user.language" value="en" />
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jre6\bin" />
+    <property name="ant.project.default-target" value="build-all" />
+    <property name="ant.project.name" value="jmxlogger" />
+    <property name="java.version" value="1.6.0_37" />
+    <property name="version" value="0.1.0-AlfrescoPatched" />
+    <property name="user.timezone" value="" />
+    <property name="project-dist" value="../jmxlogger-dist" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="test.src.dir" value="test" />
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jre6\lib\endorsed" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="file.separator" value="\" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.class.version" value="50.0" />
+    <property name="build.classes.dir" value="build/classes" />
+    <property name="user.country" value="GB" />
+    <property name="java.home" value="C:\Program Files\Java\jre6" />
+    <property name="dist.dir" value="dist" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="ant.file" value="E:\workspaces\Jmxlogger1\JMXLogger\build.xml" />
+    <property name="os.version" value="6.1" />
+    <property name="path.separator" value=";" />
+    <property name="java.vm.version" value="20.12-b01" />
+    <property name="user.variant" value="" />
+    <property name="ant.library.dir" value="E:\eclipse\plugins\org.apache.ant_1.8.3.v201301120609\lib" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="eclipse.pdebuild.scripts" value="/E:/eclipse/plugins/org.eclipse.pde.build_3.8.2.v20121114-140810/scripts/" />
+    <property name="user.home" value="C:\Users\Administrator" />
+    <property name="java.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="java.library.path" value="C:\Program Files\Java\jre6\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\app\Administrator\product\11.2.0\dbhome_1\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\MySQL\MySQL Server\bin;C:\Program Files\MySQL\MySQL Server 5.1\bin;E:\maven\apache-maven-3.1.0\bin;." />
+    <property name="java.vendor.url" value="http://java.sun.com/" />
+    <property name="java.vm.vendor" value="Sun Microsystems Inc." />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner jmxlogger.test.JmxLogHandlerTest filtertrace=true haltOnError=true haltOnFailure=true formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,E:\workspaces\Jmxlogger1\JMXLogger\test-report\TEST-jmxlogger.test.JmxLogHandlerTest.xml crashfile=E:\workspaces\Jmxlogger1\JMXLogger\junitvmwatcher8180993790078880628.properties propsfile=E:\workspaces\Jmxlogger1\JMXLogger\junit7537699293664712698.properties" />
+    <property name="java.class.path" value="E:\workspaces\Jmxlogger1\JMXLogger\lib\junit-4.5.jar;E:\workspaces\Jmxlogger1\JMXLogger\lib\log4j-1.2.15.jar;E:\workspaces\Jmxlogger1\JMXLogger\build\classes;E:\workspaces\Jmxlogger1\JMXLogger\build\test-classes;E:\eclipse\plugins\org.apache.ant_1.8.3.v201301120609\lib\ant-launcher.jar;E:\eclipse\plugins\org.apache.ant_1.8.3.v201301120609\lib\ant.jar;E:\eclipse\plugins\org.apache.ant_1.8.3.v201301120609\lib\ant-junit.jar;E:\eclipse\plugins\org.apache.ant_1.8.3.v201301120609\lib\ant-junit4.jar" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.8.3 compiled on February 26 2012" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="java.vm.specification.version" value="1.0" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="Service Pack 1" />
+    <property name="java.awt.headless" value="true" />
+    <property name="eclipse.pdebuild.home" value="/E:/eclipse/plugins/org.eclipse.pde.build_3.8.2.v20121114-140810/./" />
+    <property name="java.io.tmpdir" value="C:\Windows\TEMP\1\" />
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="ant.file.jmxlogger" value="E:\workspaces\Jmxlogger1\JMXLogger\build.xml" />
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jre6\lib\ext;C:\Windows\Sun\Java\lib\ext" />
+    <property name="user.dir" value="E:\workspaces\Jmxlogger1\JMXLogger" />
+    <property name="build.test.dir" value="build/test" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="project-name" value="jmxlogger" />
+    <property name="basedir" value="E:\workspaces\Jmxlogger1\JMXLogger" />
+    <property name="ant.java.version" value="1.6" />
+    <property name="ant.core.lib" value="E:\eclipse\plugins\org.apache.ant_1.8.3.v201301120609\lib\ant.jar" />
+    <property name="file.encoding" value="Cp1252" />
+    <property name="test.rpt.dir" value="test-report" />
+    <property name="java.specification.version" value="1.6" />
+    <property name="src.dir" value="src" />
+    <property name="ant.project.invoked-targets" value="build-all" />
+    <property name="ant.file.type.jmxlogger" value="file" />
+  </properties>
+  <testcase classname="jmxlogger.test.JmxLogHandlerTest" name="testLog" time="0.078" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[19-Aug-2013 16:48:12 jmxlogger.test.JmxLogHandlerTest testLog
+INFO: Hello, Logging Test.
+]]></system-err>
+</testsuite>

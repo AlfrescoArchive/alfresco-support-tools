@@ -1,0 +1,17 @@
+project-name=jmxlogger
+version=0.1.0-AlfrescoPatched
+
+src.dir=src
+lib.dir=lib
+
+build.dir=build
+build.classes.dir=${build.dir}/classes
+build.test.dir=${build.dir}/test
+
+test.src.dir=test
+test.rpt.dir=test-report
+test.classes.dir=${build.dir}/test-classes
+
+dist.dir=dist
+project-dist=../${project-name}-dist
+docs.dir=docs

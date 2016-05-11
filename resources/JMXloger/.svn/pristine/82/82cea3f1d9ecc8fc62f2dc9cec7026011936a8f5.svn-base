@@ -1,0 +1,13 @@
+#log4j format
+log4j.rootLogger=CONSOLE,jmxlogger1
+
+log4j.appender.jmxlogger1=jmxlogger.integration.log4j.JmxLogAppender
+log4j.appender.jmxlogger1.layout=org.apache.log4j.PatternLayout
+log4j.appender.jmxlogger1.layout.ConversionPattern=%-5p %c[1] - %m%n
+log4j.appender.jmxlogger1.ObjectName=jmxlogger:type=LogEmitterTest
+log4j.appender.jmxlogger1.threshold=debug
+log4j.appender.jmxlogger1.serverSelection=platform
+
+log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+log4j.appender.CONSOLE.layout.ConversionPattern=[%d{MMM dd HH:mm:ss}] %-5p (%F:%L) - %m%n
