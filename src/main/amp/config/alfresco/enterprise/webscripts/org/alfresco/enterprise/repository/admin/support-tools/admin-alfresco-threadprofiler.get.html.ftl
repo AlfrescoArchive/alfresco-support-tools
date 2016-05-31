@@ -360,7 +360,7 @@ var AdminTD = AdminTD || {};
 		/* request a new JSON threadump  */
 		Admin.request(
 		{
-			url : "${url.serviceContext}/enterprise/admin/admin-alfresco-threadsampler-getone",
+			url : "${url.serviceContext}/enterprise/admin/admin-alfresco-threadsampler-getone.json",
 			fnSuccess : function (res)
 			{
 				if (res.responseJSON)

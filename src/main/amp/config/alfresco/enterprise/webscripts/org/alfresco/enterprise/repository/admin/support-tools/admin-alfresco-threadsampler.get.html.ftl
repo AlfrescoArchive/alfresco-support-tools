@@ -615,14 +615,12 @@ document.getElementById('files').addEventListener('change', handleFileSelect, fa
 	{
 		Admin.request(
 		{
-			url : "${url.serviceContext}/enterprise/admin/admin-alfresco-threadsampler-getone",
+			url : "${url.serviceContext}/enterprise/admin/admin-alfresco-threadsampler-getone.json",
 			fnSuccess : function (res)
 			{
 				if (res.responseJSON)
 				{
 					var json = res.responseJSON;
-
-					// var threaddumpviewer = document.getElementById("threaddumpviewer");
 
 					allDumps.push(json.threaddump[0]);
 

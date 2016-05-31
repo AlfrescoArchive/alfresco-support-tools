@@ -89,7 +89,7 @@ function main(){
 				
                 
                 if (processedChain == null) {
-                	processedChain="<span style='color: red'>**** NOT SET ****</span>";
+                	processedChain="**** NOT SET ****";
                 }
                 
                 if (!pushed) {
