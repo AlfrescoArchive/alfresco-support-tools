@@ -6,6 +6,7 @@
 function main()
 {
 model.context =args["context"] || "test";
+var filters = argsM["filter"];
 var matchingBeans = jmx.queryMBeans("jmxlogger:type=LogEmitter"+model.context);
 var mbean = matchingBeans[0];
 if (mbean == null){
@@ -69,5 +70,23 @@ if (mbean == null){
 		 
 		}
 	model.message = message;
+	if (filters)
+	{
+		var filteredMessages = [];
+		for each (messageline in message)
+		{
+			for each (messageline in message)
+			{
+				for each (filter in filters)
+				{
+					if (messageline.indexOf(filter) > -1)
+					{
+						filteredMessages.push(messageline);
+					}
+				}
+			}
+		}
+		model.message = filteredMessages;
+	}
 }
 main();
