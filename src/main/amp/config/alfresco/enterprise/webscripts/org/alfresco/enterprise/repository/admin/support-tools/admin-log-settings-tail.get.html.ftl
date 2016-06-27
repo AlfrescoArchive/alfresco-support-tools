@@ -5,7 +5,7 @@
 </style>
 	<div id="loggrid" class="datagrid" >
 		<table><tbody>
-		    <#if ((message[0]?substring(0,1))=="M") >
+		    <#if (message[0]?has_content && (message[0]?substring(0,1))=="M") >
 			 <tr><td>${message[0]}</td></tr>
 			<#else>
 			 <#list message as thisline>			 
@@ -46,7 +46,7 @@
 	</div>
 	<div id="textonlybox" class="textonlybox" style="display: none;" >
 		 
-		 <textarea id="textareaLog" cols=150 rows=60 font=small class="log" wrap="logical" readonly=true style="; font-family: Lucida Console; font-size: 9px" ><#if ((message[0]?substring(0,1))=="M")>${message[0]}<#else><#list message as thisline><#if (thisline?length>12)><#assign 
+		 <textarea id="textareaLog" cols=150 rows=60 font=small class="log" wrap="logical" readonly=true style="; font-family: Lucida Console; font-size: 9px" ><#if (message[0]?has_content && (message[0]?substring(0,1))=="M")>${message[0]}<#else><#list message as thisline><#if (thisline?length>12)><#assign 
 				firstsp=thisline?index_of(" ")
 				secondsp=thisline?index_of(" ",firstsp+1)
 				errlevel=thisline?substring(firstsp+1,secondsp) 
@@ -57,7 +57,11 @@
 	<br><br>
 	<div class="datagrid" width="90%"  >
 	<table width="90%" ><tbody><tr>
-		<td><@button class="cancel" label=msg("admin-console.close") onclick="AdminTL.closeDialog();" /></td>	
+		<#if hideCloseButton>
+			<td></td>	
+		<#else/>
+			<td><@button class="cancel" label=msg("admin-console.close") onclick="AdminTL.closeDialog();" /></td>	
+		</#if>
 		<td width="25%">Autorefresh: 
 			<@button id="starttimer" label="Start" description="" onclick="AdminTL.starttimer();" />
 			<@button id="stoptimer" label="Stop" description="" onclick="AdminTL.stoptimer();" /> </td>				

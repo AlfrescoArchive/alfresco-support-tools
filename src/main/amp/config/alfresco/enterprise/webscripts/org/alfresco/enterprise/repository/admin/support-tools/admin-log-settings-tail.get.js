@@ -7,6 +7,11 @@ function main()
 {
 model.context =args["context"] || "test";
 var filters = argsM["filter"];
+var hideCloseButton = false;
+if (typeof args["hideCloseButton"] !== "undefined") {
+	hideCloseButton = args["hideCloseButton"] === 'true' ? true : false;
+}
+
 var matchingBeans = jmx.queryMBeans("jmxlogger:type=LogEmitter"+model.context);
 var mbean = matchingBeans[0];
 if (mbean == null){
@@ -67,8 +72,8 @@ if (mbean == null){
 	else{
 		var tail = mbean.operations.tail();
 		var message = tail.split("\n");	   
-		 
-		}
+	}
+	model.hideCloseButton = hideCloseButton;
 	model.message = message;
 	if (filters)
 	{
