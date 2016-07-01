@@ -146,11 +146,11 @@
 
 	<distributionManagement>
         <repository>
-            <id>alfresco-enterprise-releases</id>
+            <id>alfresco-private</id>
             <url>https://artifacts.alfresco.com/nexus/content/repositories/enterprise-releases</url>
         </repository>
         <snapshotRepository>
-            <id>alfresco-enterprise-snapshots</id>
+            <id>alfresco-internal-snapshots</id>
             <url>https://artifacts.alfresco.com/nexus/content/repositories/enterprise-snapshots</url>
         </snapshotRepository>
 	</distributionManagement>
