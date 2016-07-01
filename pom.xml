@@ -145,17 +145,15 @@
 	</dependencies>
 
 	<distributionManagement>
-		<repository>
-			<id>alfresco-public-support-releases</id>
-			<url>https://artifacts.alfresco.com/nexus/content/repositories/alfresco-public-support-releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>alfresco-support-snapshots</id>
-			<url>https://artifacts.alfresco.com/nexus/content/repositories/alfresco-support-snapshots</url>
-		</snapshotRepository>
+        <repository>
+            <id>alfresco-enterprise-releases</id>
+            <url>https://artifacts.alfresco.com/nexus/content/repositories/enterprise-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>alfresco-enterprise-snapshots</id>
+            <url>https://artifacts.alfresco.com/nexus/content/repositories/enterprise-snapshots</url>
+        </snapshotRepository>
 	</distributionManagement>
-
-
 
 	<!-- This repository is only needed to retrieve Alfresco parent POM. NOTE: 
 		This can be removed when/if Alfresco will be on Maven Central NOTE: The repository 
