@@ -34,7 +34,7 @@ There are two options to install the tools using the AMP: the standard and the h
 ### 1. Standard
 
   *	Place the _support-tools-*.amp_ file into your Alfresco _amps_ folder 
-  * Run the script: **bin/apply-amps.[sh|bat]** with the **-force** switch.
+  * Run the script: **bin/apply_amps.[sh|bat]** with the **-force** switch.
   
   Alternatively it is possible to: 
   *	Execute the following command (amending the paths to your case):
