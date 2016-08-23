@@ -80,14 +80,11 @@ if (mbean == null){
 		var filteredMessages = [];
 		for each (messageline in message)
 		{
-			for each (messageline in message)
+			for each (filter in filters)
 			{
-				for each (filter in filters)
+				if (messageline.indexOf(filter) > -1)
 				{
-					if (messageline.indexOf(filter) > -1)
-					{
-						filteredMessages.push(messageline);
-					}
+					filteredMessages.push(messageline);
 				}
 			}
 		}
