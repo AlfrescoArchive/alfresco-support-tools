@@ -2,7 +2,6 @@
    <shortname>Thread Dump - GetOne</shortname>
    <description><![CDATA[Generate Thread Dump.]]></description>
    <url>/enterprise/admin/admin-alfresco-threaddump-getone</url>
-   <format default="json">argument</format>
    <authentication>admin</authentication>
    <lifecycle>internal</lifecycle>
    <transaction allow="readwrite">required</transaction>

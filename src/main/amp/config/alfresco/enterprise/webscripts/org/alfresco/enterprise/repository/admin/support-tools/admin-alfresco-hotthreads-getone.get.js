@@ -1,64 +1,31 @@
-<import resource="classpath:alfresco/enterprise/webscripts/org/alfresco/enterprise/repository/admin/admin-common.lib.js">
-	   
+<import resource="classpath:alfresco/enterprise/webscripts/org/alfresco/enterprise/repository/admin/support-tools/admin-alfresco-threads-common.lib.js">
+ 
 /**
- * Repository Admin Console - Java hotthreads
+ * Repository Admin Console - Java hotthreads-getone
  *
- * Java hotthreads GET method
+ * Java hotthreads-getone GET method
  */
-
-function stackTrace(stacks, lockedMonitors, thisthread) 
-{
-    var stackTrace = "";
-    for (var n = 0; n < stacks.length; n++) {
-        stack = stacks[n];
-
-
-        if (stack.dataMap["nativeMethod"] == true) {
-            stackTrace = "\tat " + stack.dataMap["className"] + "." + stack.dataMap["methodName"] + "(Native Method)\n";
-            if (thisthread.dataMap["lockInfo"]) {
-                var lockInfo = thisthread.dataMap["lockInfo"];
-                stackTrace += "\t- parking to wait for <" + tohex(lockInfo.dataMap["identityHashCode"], 16) + "> (a " + lockInfo.dataMap["className"] + ")\n";
-            }
-        } else {
-            stackTrace += "\tat " + stack.dataMap["className"] + "." + stack.dataMap["methodName"] + "(" + stack.dataMap["fileName"] + ":" + stack.dataMap["lineNumber"] + ")\n";
-        }
-        if (lockedMonitors) {
-            for (var j = 0; j < lockedMonitors.length; j++) {
-                if (lockedMonitors[j].dataMap["lockedStackDepth"] == n) {
-                    stackTrace += "\t- locked <" + tohex(lockedMonitors[j].dataMap["identityHashCode"], 16) + "> (a " + lockedMonitors[j].dataMap["className"] + ")\n";
-                }
-            }
-        }
-    }
-    return stackTrace;
-}
-
-function tohex(thisnumber, chars) 
-{
-    var hexNum = "0x" + ("0000000000000000000" + thisnumber.toString(16)).substr(-1 * chars);
-    return hexNum;
-};
-
 
 function main() 
 {
-    var tDump = "";
+	var hotThreads = [];
 
-    function format(thisvalue) 
+    function format(thisValue) 
     {
-        thisvalue = "00" + thisvalue;
-        return thisvalue.substr(-2);
+        thisValue = "00" + thisValue;
+        return thisValue.substr(-2);
     }
 
     var runtimeBean = Admin.getMBean("java.lang:type=Runtime");
-
+    
     var now = new Date();
-    var mydate = now.getFullYear() + "-" + format(now.getMonth() + 1) + "-" + format(now.getDate()) + " " + format(now.getHours()) + ":" + format(now.getMinutes()) + ":" + format(now.getSeconds());
+    var myDate = now.getFullYear() + "-" + format(now.getMonth() + 1) + "-" + format(now.getDate()) + " " + format(now.getHours()) + ":" + format(now.getMinutes()) + ":" + format(now.getSeconds());
 
-    tDump += "<span class=\"highlight\">" + mydate + "</span>\n";
-    tDump += "<span class=\"highlight\">Hot Threads Report on " + runtimeBean.attributes.VmName.value + " (" + runtimeBean.attributes.VmVersion.value + ")</span>\n";
+    model.myDate = myDate;    
+    model.vmName = runtimeBean.attributes.VmName.value;
+    model.vmVersion = runtimeBean.attributes.VmVersion.value;
 
-	var threadInfos = {};
+	var threadInfo = {};
     var threadBean = Admin.getMBean("java.lang:type=Threading");
     
     for (var ti in threadBean.attributes["AllThreadIds"].value) 
@@ -66,8 +33,9 @@ function main()
         threadId = threadBean.attributes["AllThreadIds"].value[ti];
         cpu = threadBean.operations.getThreadCpuTime_(["long"], threadId);
 		info = threadBean.operations.getThreadInfo_(["long"], threadId );
-        threadInfos[threadId] = new MyThreadInfo(cpu, info);
+        threadInfo[threadId] = new MyThreadInfo(cpu, info);
     }
+    
     sleep(999); //wait 1 second and take times again
 	
     for (var ti in threadBean.attributes["AllThreadIds"].value) 
@@ -75,20 +43,20 @@ function main()
         threadId = threadBean.attributes["AllThreadIds"].value[ti];
         cpu = threadBean.operations.getThreadCpuTime_(["long"], threadId);
 		info = threadBean.operations.getThreadInfo_(["long"], threadId );
-        threadInfos[threadId].deltaDone=true;
-		threadInfos[threadId].cpuTime=cpu-threadInfos[threadId].cpuTime;
-		
+        threadInfo[threadId].deltaDone=true;
+		threadInfo[threadId].cpuTime=cpu-threadInfo[threadId].cpuTime;
     }
-	var threaddump = threadBean.operations.dumpAllThreads(true, true);
+    
+	var threadDump = threadBean.operations.dumpAllThreads(true, true);
     var threads = new Array(); //new sortable array to store all values
 
-    for (var n = threaddump.length -1; n >= 0; n--)
+    for (var n = threadDump.length -1; n >= 0; n--)
     {
-        var threadId = threaddump[n].dataMap["threadId"];
-        if (threadInfos[threadId] !== undefined && threadInfos[threadId] !== null)
+        var threadId = threadDump[n].dataMap["threadId"];
+        if (threadInfo[threadId] !== undefined && threadInfo[threadId] !== null)
         {
-            threadInfos[threadId].info=threaddump[n];
-            threads.push(threadInfos[threadId]);
+            threadInfo[threadId].info=threadDump[n];
+            threads.push(threadInfo[threadId]);
         }
     }
 	
@@ -99,50 +67,52 @@ function main()
     {				
         var thread = threads[n].info;
         var keys = threads[n].info.dataKeys;
-        var thiscputime = threads[n].cpuTime / 10000000;
-		logger.warn("+++Hotthreads "+thread.dataMap["threadName"]+" tid=" + thread.dataMap["threadId"] +" CPU TIME=" + thiscputime +"% ("+threads[n].cpuTime+")");
-		//print (threads[n].info);
-		//print (thiscputime);
+        var thisCpuTime = threads[n].cpuTime / 10000000;
+        
+        // TODO: change to logger.info?
+		logger.warn("+++Hotthreads "+thread.dataMap["threadName"]+" tid=" + thread.dataMap["threadId"] +" CPU TIME=" + thisCpuTime +"% ("+threads[n].cpuTime+")");
 
-        tDump += "\n";
-        tDump += "<span class=\"highlight\"> CPU TIME=" + thiscputime + "% </span>\n";
-        tDump += "<span class=\"highlight\">\"" + thread.dataMap["threadName"] + "\" tid=" + thread.dataMap["threadId"] + " Total_Blocked=" + thread.dataMap["blockedCount"] + " Total_Waited=" + thread.dataMap["waitedCount"] + " Waited_Time=" + thread.dataMap["waitedTime"] + " " + thread.dataMap["threadState"] + "</span>\n";
-        tDump += "   java.lang.Thread.State: " + thread.dataMap["threadState"] + "\n";
+		hotThreads[n] = {};
+		hotThreads[n].cpuTime = thisCpuTime;
+        
+        hotThreads[n].threadName = thread.dataMap["threadName"];
+        hotThreads[n].threadId = thread.dataMap["threadId"];
+        hotThreads[n].blockedCount = thread.dataMap["blockedCount"];
+        hotThreads[n].waitedCount = thread.dataMap["waitedCount"];
+        hotThreads[n].waitedTime = thread.dataMap["waitedTime"];
+        hotThreads[n].threadState = thread.dataMap["threadState"];
 
         thisStackTrace=stackTrace(thread.dataMap["stackTrace"], thread.dataMap["lockedMonitors"], thread);
-		if (thisStackTrace.indexOf("admin-alfresco-hotthreads-getone.get.js")>1)
+        
+		if (!(thisStackTrace.indexOf("admin-alfresco-hotthreads-getone.get.js") > 1))
 		{
-			tDump += "   ***Ingore this thread: this is the running process to Obtain HOTTHREADS \n";
+			hotThreads[n].stackTrace = thisStackTrace;
 		}
-		else
-		{
-			tDump += thisStackTrace;
-		}
-        tDump += "   Locked ownable synchronizers:\n";
-
+		
         var lockedSynchronizers = thread.dataMap["lockedSynchronizers"];
-        if (lockedSynchronizers.length > 0) 
+        if (lockedSynchronizers && lockedSynchronizers.length > 0) 
 		{
+    		hotThreads[n].lockedSynchronizers = [];
+    		
             for (var i = 0; i < lockedSynchronizers.length; i++) 
 			{
-                tDump += "\t<" + tohex(lockedSynchronizers[i].dataMap["identityHashCode"], 16) + "> (a " + lockedSynchronizers[i].dataMap["className"] + ")\n";
+            	hotThreads[n].lockedSynchronizers[i] = {};
+            	hotThreads[n].lockedSynchronizers[i].identityHashCode = toHex(lockedSynchronizers[i].dataMap["identityHashCode"], 16);
+            	hotThreads[n].lockedSynchronizers[i].className = lockedSynchronizers[i].dataMap["className"];
             }
         } 
-		else 
-		{
-            tDump += "\t- None\n";
-        }
     }
-    tDump += "\n";
+
     var deadLockedThreads = 0;
+    
     if (threadBean.operations.findDeadlockedThreads()) 
 	{
         deadLockedThreads = threadBean.operations.findDeadlockedThreads();
     }
-    tDump += "Number of Threads = " + threads.length + "\n";
-    tDump += "Deadlocked Threads = " + deadLockedThreads + "\n";
-    // print(tDump);
-    model.hotthreads = tDump;
+    
+    model.numberOfThreads = threads.length;
+    model.deadlockedThreads = deadLockedThreads;
+    model.hotThreads = hotThreads;
 }
 
 function MyThreadInfo(cpuTime, info) 
@@ -164,4 +134,3 @@ function sleep(delay)
 }
 
 main();
-   

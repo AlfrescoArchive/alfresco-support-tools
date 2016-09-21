@@ -49,7 +49,11 @@
 								${(bean.attributes[key].value?string)!" "}
 							</td>
 							<td>
+							  <#if matchingAttributes[key] == "**** NOT SET ****">
+								<span style='color: red'>**** NOT SET ****</span>
+								<#else>
 								${(matchingAttributes[key]?string)!"" }
+								</#if>
 							</td>
 						</tr>
 						</#if>

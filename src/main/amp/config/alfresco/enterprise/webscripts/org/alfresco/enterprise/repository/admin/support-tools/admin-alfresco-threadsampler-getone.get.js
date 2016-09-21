@@ -79,25 +79,26 @@ function main()
    
    tDump += '   "threads"   : [ \n';
   
-   //for (var n = threads.length -1; n >= 0; n--)
    for (var n = 0 ; n <= threads.length -1 ; n++)
    {
       var thread = threads[n];
       var keys = threads[n].dataKeys;
+      
       tDump += '            {\n';
-	  tDump += '            "threadNumber"        : "' + n + '",\n';
+	    tDump += '            "threadNumber"        : "' + n + '",\n';
       tDump += '            "threadName"          : "' + thread.dataMap["threadName"] + '",\n';
-	  tDump += '            "threadId"            : "' + thread.dataMap["threadId"] + '",\n';
-	  tDump += '            "blockedCount"        : "' + thread.dataMap["blockedCount"] + '",\n';
-	  tDump += '            "waitedCount"         : "' + thread.dataMap["waitedCount"] + '",\n';
-	  tDump += '            "threadState"         : "' + thread.dataMap["threadState"] + '",\n';
-	  tDump += '            "getThreadCpuTime"    : "' + threadBean.operations.getThreadCpuTime_(["long"], thread.dataMap["threadId"] ) + '",\n';
-	  tDump += '            "getThreadUserTime"   : "' + threadBean.operations.getThreadUserTime_(["long"], thread.dataMap["threadId"] ) + '",\n';
-	  tDump += '            "ThreadAllocatedBytes": "' + threadBean.operations.getThreadAllocatedBytes_(["long"], thread.dataMap["threadId"] ) + '",\n';
-	  tDump += '            "stackTrace"          : "' + stackTrace(thread.dataMap["stackTrace"], thread.dataMap["lockedMonitors"], thread) + '",\n';	  
-	  tDump += '            "lockedSynchronizers" : "' ;
+      tDump += '            "threadId"            : "' + thread.dataMap["threadId"] + '",\n';
+      tDump += '            "blockedCount"        : "' + thread.dataMap["blockedCount"] + '",\n';
+      tDump += '            "waitedCount"         : "' + thread.dataMap["waitedCount"] + '",\n';
+      tDump += '            "threadState"         : "' + thread.dataMap["threadState"] + '",\n';
+      tDump += '            "getThreadCpuTime"    : "' + threadBean.operations.getThreadCpuTime_(["long"], thread.dataMap["threadId"] ) + '",\n';
+      tDump += '            "getThreadUserTime"   : "' + threadBean.operations.getThreadUserTime_(["long"], thread.dataMap["threadId"] ) + '",\n';
+      tDump += '            "ThreadAllocatedBytes": "' + threadBean.operations.getThreadAllocatedBytes_(["long"], thread.dataMap["threadId"] ) + '",\n';
+      tDump += '            "stackTrace"          : "' + stackTrace(thread.dataMap["stackTrace"], thread.dataMap["lockedMonitors"], thread) + '",\n';	  
+      tDump += '            "lockedSynchronizers" : "' ;
     
       var lockedSynchronizers=thread.dataMap["lockedSynchronizers"];
+      
       if (lockedSynchronizers.length>0)	
       {
          for (var i = 0; i < lockedSynchronizers.length; i++)
@@ -106,22 +107,24 @@ function main()
          }
       }
       else
-		{
-		   tDump += 'NONE';
-		}
+      {
+        tDump += 'NONE';
+      }
 		
-	  tDump += '" }' ;
-		
-	  if (n < threads.length -1 )
-	  {
-	  	  tDump += ',';
-	  }
-	  tDump += '\n' ;
+      tDump += '" }' ;
+      
+      if (n < threads.length -1 )
+      {
+          tDump += ',';
+      }
+      
+      tDump += '\n' ;
    }
    
    tDump += '            ],\n';
    
    var deadLockedThreads = 0;
+   
    if(threadBean.operations.findDeadlockedThreads())
    {
       deadLockedThreads = threadBean.operations.findDeadlockedThreads();

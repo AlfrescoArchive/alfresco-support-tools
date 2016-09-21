@@ -2,7 +2,6 @@
    <shortname>Thread Sampler - GetOne</shortname>
    <description><![CDATA[Generate Thread threasampler.]]></description>
    <url>/enterprise/admin/admin-alfresco-threadsampler-getone</url>
-   <format default="json">argument</format>
    <authentication>admin</authentication>
    <lifecycle>internal</lifecycle>
    <transaction allow="readwrite">required</transaction>
