@@ -1,4 +1,4 @@
-# Alfresco Support Admin Tools    
+# Alfresco Support Tools    
     
     
 This add-on has been designed to work only in Alfresco Enterprise 4.2.x or above using JDK7 and Tomcat7. This provides the Alfresco Admin a set of tools to help troubleshoot performance issues (also tested on Alfresco Enterprise 5.0.x versions has not found any incompatibilities).
