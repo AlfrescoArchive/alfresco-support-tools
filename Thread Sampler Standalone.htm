@@ -889,81 +889,7 @@ var Admin = Admin || {};
    {
    }
    
-   /**
-    * Ajax request helper
-    * 
-    * @param config  {Object} Of the form:
-    *                {
-    *                   method: "GET|POST|PUT|DELETE",
-    *                   url: "endpointurl",
-    *                   data: {object to be posted},
-    *                   requestContentType: "application/json",
-    *                   responseContentType: "application/json",
-    *                   fnSuccess: successHandler(response),
-    *                   fnFailure: failureHandler(response)
-    *                }
-    */
-   Admin.request = function request(config)
-   {
-      var req = new XMLHttpRequest();
-      var data = config.data || {};
-      if (req.overrideMimeType) req.overrideMimeType((config.responseContentType ? config.responseContentType : "application/json") + "; charset=utf-8");
-      req.open(config.method ? config.method : "GET", config.url);
-      req.setRequestHeader("Accept", config.requestContentType ? config.requestContentType : "application/json");
-      req.onreadystatechange = function() {
-         if (req.readyState === 4)
-         {
-            if (req.status === 200)
-            {
-               // success - call handler
-               if (config.fnSuccess)
-               {
-                  var json;
-                  try
-                  {
-                     json = !config.responseContentType || config.responseContentType === "application/json" ? JSON.parse(req.responseText) : null;
-                  }
-                  catch (e)
-                  {
-                     // Developer JSON response error (e.g. malformed response text)
-                     alert(e + "\n" + req.status + "\n" + req.responseText);
-                  }
-                  config.fnSuccess.call(this, {
-                     responseText: req.responseText,
-                     responseStatus: req.status,
-                     responseJSON: json
-                  });
-               }
-            }
-            else
-            {
-               // failure - call handler
-               if (config.fnFailure)
-               {
-                  config.fnFailure.call(this, {
-                     responseText: req.responseText,
-                     responseStatus: req.status
-                  });
-               }
-               else
-               {
-                  // default error handler
-                  alert("Request failed due to error.\n\n" + res.responseText + "\n\n" + res.responseStatus);
-               }
-            }
-         }
-      };
-      if (config.method === "POST" || config.method === "PUT")
-      {
-         // TODO: support form url encoded
-         req.send(JSON.stringify(data));
-      }
-      else
-      {
-         req.send(null);
-      }
-   }
-   
+  
    /**
     * Perform binary file upload to a given service URL. Uses hidden iframe technique to give
     * an Ajax like upload with support for earlier browser APIs.
@@ -1518,6 +1444,15 @@ function handleFileSelect(evt)
 		try
 		{
 			allDumps = JSON.parse(reader.result);
+			function compare(a,b) {
+			  if (a.timestamp < b.timestamp)
+				return -1;
+			  if (a.timestamp > b.timestamp)
+				return 1;
+			  return 0;
+			}
+         // Dunno why but some thread dumps came to me with random order, so I make sure they are sorted by timestamp.
+			allDumps.sort(compare);
 		}
 		catch(e)
 		{
